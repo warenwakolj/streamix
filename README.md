@@ -13,3 +13,4 @@
 ## Less important to do
 - private server support
 - skinning support
+- make the followpoints rotated
