@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>osum</RootNamespace>
+    <AssemblyName>osu!m</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG MONO NO_ENCRYPTION OSUM</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Audio\AudioEngine.cs" />
+    <Compile Include="Audio\BackgroundAudioPlayerDesktop.cs" />
+    <Compile Include="Audio\IBackgroundAudioPlayer.cs" />
+    <Compile Include="Audio\ISoundEffectPlayer.cs" />
+    <Compile Include="Audio\SoundEffectPlayer.cs" />
+    <Compile Include="Director.cs" />
+    <Compile Include="GameBase.cs" />
+    <Compile Include="GameModes\GameComponent.cs" />
+    <Compile Include="GameModes\GameMode.cs" />
+    <Compile Include="GameModes\MainMenu.cs" />
+    <Compile Include="GameModes\Play\Components\ComboCounter.cs" />
+    <Compile Include="GameModes\Play\Components\Pause.cs" />
+    <Compile Include="GameModes\Play\Components\ScoreDisplay.cs" />
+    <Compile Include="GameModes\Play\Player.cs" />
+    <Compile Include="GameModes\Play\Rulesets\Ruleset.cs" />
+    <Compile Include="GameModes\Options.cs" />
+    <Compile Include="GameModes\Ranking.cs" />
+    <Compile Include="GameModes\SongSelect.cs" />
+    <Compile Include="GameModes\SongSelect\BeatmapPanel.cs" />
+    <Compile Include="GameplayElements\Beatmaps\Beatmap.cs" />
+    <Compile Include="GameplayElements\Beatmaps\Beatmap_Timing.cs" />
+    <Compile Include="GameplayElements\Beatmaps\ControlPoint.cs" />
+    <Compile Include="GameplayElements\Events\Event.cs" />
+    <Compile Include="GameplayElements\HitFactory.cs" />
+    <Compile Include="GameplayElements\HitObjectManager.cs" />
+    <Compile Include="GameplayElements\HitObjectManager_Load.cs" />
+    <Compile Include="GameplayElements\HitObjects\HitObjectSpannable.cs" />
+    <Compile Include="GameplayElements\HitObjects\Osu\HitCircle.cs" />
+    <Compile Include="GameplayElements\HitObjects\Osu\HitFactoryOsu.cs" />
+    <Compile Include="GameplayElements\HitObjects\HitObject.cs" />
+    <Compile Include="GameplayElements\HitObjects\Osu\Slider.cs" />
+    <Compile Include="GameplayElements\HitObjects\Osu\Spinner.cs" />
+    <Compile Include="GameModes\Play\Components\HealthBar.cs" />
+    <Compile Include="GameplayElements\Scoring\Score.cs" />
+    <Compile Include="Graphics\Primitives\Line.cs" />
+    <Compile Include="Graphics\Renderers\NativeTextRenderer.cs" />
+    <Compile Include="Graphics\Renderers\NativeTextRendererDesktop.cs" />
+    <Compile Include="Graphics\Renderers\SliderTrackRendererDesktop.cs" />
+    <Compile Include="Graphics\Skins\SkinManager_Colours.cs" />
+    <Compile Include="Graphics\Renderers\SliderTrackRenderer.cs" />
+    <Compile Include="Graphics\Sprites\pSprite_Interaction.cs" />
+    <Compile Include="Graphics\Sprites\pText.cs" />
+    <Compile Include="Graphics\TextureManager.cs" />
+    <Compile Include="Helpers\Audio\AudioReader.cs" />
+    <Compile Include="Helpers\Audio\AudioReaderException.cs" />
+    <Compile Include="Helpers\Audio\Sound.cs" />
+    <Compile Include="Helpers\Audio\SoundData.cs" />
+    <Compile Include="Helpers\Audio\SoundFormat.cs" />
+    <Compile Include="Helpers\Audio\WaveReader.cs" />
+    <Compile Include="Helpers\BoundingBox.cs" />
+    <Compile Include="Helpers\ColourHelper.cs" />
+    <Compile Include="Helpers\osu!common\bSerializable.cs" />
+    <Compile Include="Helpers\osu!common\DynamicDeserializer.cs" />
+    <Compile Include="Helpers\osu!common\FastSerializer.cs" />
+    <Compile Include="Helpers\osu!common\GeneralHelper.cs" />
+    <Compile Include="Helpers\osu!common\MapPackage.cs" />
+    <Compile Include="Helpers\osu!common\MapStream.cs" />
+    <Compile Include="Helpers\pList.cs" />
+    <Compile Include="Helpers\pMathHelper.cs" />
+    <Compile Include="Input\Sources\InputSource.cs" />
+    <Compile Include="Input\Sources\InputSourceMouse.cs" />
+    <Compile Include="Input\TrackingPoint.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="GameplayElements\BeatmapManager.cs" />
+    <Compile Include="GameplayElements\DifficultyManager.cs" />
+    <Compile Include="Helpers\Clock.cs" />
+    <Compile Include="Helpers\Delegates.cs" />
+    <Compile Include="Graphics\pTexture.cs" />
+    <Compile Include="Graphics\TextureGl.cs" />
+    <Compile Include="Graphics\Sprites\SpriteManager.cs" />
+    <Compile Include="Support\FadeTransition.cs" />
+    <Compile Include="Support\IDrawable.cs" />
+    <Compile Include="Graphics\Sprites\pAnimation.cs" />
+    <Compile Include="Graphics\Sprites\pSprite.cs" />
+    <Compile Include="Graphics\Sprites\pSpriteCollection.cs" />
+    <Compile Include="Graphics\Sprites\pSpriteText.cs" />
+    <Compile Include="Graphics\Sprites\SpriteEffect.cs" />
+    <Compile Include="Graphics\Sprites\Transform.cs" />
+    <Compile Include="Input\InputManager.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Support\Desktop\GameBaseDesktop.cs" />
+    <Compile Include="Support\Desktop\GameWindowDesktop.cs" />
+    <Compile Include="Support\ITimeSource.cs" />
+    <Compile Include="Support\IUpdateable.cs" />
+    <Compile Include="Support\Transition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=1.0.0.201, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BassNet\BassNet.csproj">
+      <Project>{2FF2EE6F-7BD7-4ED4-A077-A655C8811A81}</Project>
+      <Name>BassNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bass_fx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\beatmapimport-spinner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-comma.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-dot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-percent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\default-x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\go.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\menu-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\menu-explosion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\menu-osu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\menuhit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-hitclap.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-hitfinish.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-hitnormal.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-hitwhistle.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-sliderslide.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\normal-slidertick.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\play-skip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-comma.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-dot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-percent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\score-x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-colour-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-colour-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-colour-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-colour-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-ki.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-kidanger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\scorebar-kidanger2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderb-9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderpoint10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\sliderpoint30.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-hitclap.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-hitfinish.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-hitnormal.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-hitwhistle.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-sliderslide.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-slidertick.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\soft-sliderwhistle.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-approachcircle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-circle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-clear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-metre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-osu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-rpm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\spinner-spin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\star2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Default\star3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Beatmaps\" />
+    <Folder Include="GameModes\Play\Rulesets\Osu\" />
+  </ItemGroup>
+</Project>
