@@ -5,7 +5,7 @@
 - add pause screen
 - fix the touch detection of sprites (theyre really off)
 - add keyboard support
-- fix the circlesize
+- fix the circlesize and ui size
 - add cursor
 - make song selection system closer to stable
 - make button types (ability to call for a back button instead of making one on every page for example)
