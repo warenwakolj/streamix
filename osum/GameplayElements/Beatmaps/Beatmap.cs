@@ -15,6 +15,7 @@ namespace osum.GameplayElements.Beatmaps
         public byte DifficultyOverall;
         public byte DifficultyCircleSize;
         public byte DifficultyHpDrainRate;
+        public byte DifficultyApproachRate;
         public int StackLeniency = 1;
 
         public string BeatmapFilename;

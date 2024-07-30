@@ -8,8 +8,6 @@
 - fix the circlesize and ui size
 - add cursor
 - make song selection system closer to stable
-- make button types (ability to call for a back button instead of making one on every page for example)
-
 ## Less important to do
 - private server support
 - skinning support

@@ -71,9 +71,9 @@ namespace osum.Graphics.Sprites
         internal int DrawLeft;
         internal int DrawWidth;
         internal int DrawHeight;
-		
-		internal int ClockingNow { get { return Clock.GetTime(Clocking); } }
-		
+
+        internal int ClockingNow { get { return Clock.GetTime(Clocking); } }
+
         internal bool Disposable;
 
         internal int Width { get { return texture != null ? texture.Width : 0; } }
@@ -467,8 +467,8 @@ namespace osum.Graphics.Sprites
                         fieldPosition = Position;
                         GameBase.GamefieldToStandard(ref fieldPosition);
                         break;
-					case FieldTypes.NativeScaled:
-						return Position / GameBase.WindowRatio;
+                    case FieldTypes.NativeScaled:
+                        return Position / GameBase.WindowRatio;
                     case FieldTypes.Native:
                     default:
                         fieldPosition = Position;
@@ -488,7 +488,7 @@ namespace osum.Graphics.Sprites
                     case FieldTypes.Gamefield512x384:
                         return Scale * GameBase.SpriteRatioToWindowBase * (DifficultyManager.HitObjectRadius / DifficultyManager.HitObjectRadiusDefault);
                     case FieldTypes.Native:
-					case FieldTypes.NativeScaled:
+                    case FieldTypes.NativeScaled:
                         return Scale / GameBase.WindowRatio;
                     default:
                         return Scale * GameBase.SpriteRatioToWindowBase;
@@ -627,9 +627,9 @@ namespace osum.Graphics.Sprites
 
             if (destination == Position)
                 return;
-			
-			if (duration == 0)
-				Position = destination;
+
+            if (duration == 0)
+                Position = destination;
 
             int now = Clock.GetTime(Clocking);
 
@@ -682,16 +682,17 @@ namespace osum.Graphics.Sprites
         }
 
         #endregion
-		
-		internal static pSprite FullscreenWhitePixel
-		{
-			get {
-				pSprite whiteLayer =
-				    new pSprite(pTexture.FromRawBytes(new byte[] { 255, 255, 255, 255 }, 1, 1), FieldTypes.Standard, OriginTypes.TopLeft, ClockTypes.Mode, Vector2.Zero, 1, false, Color4.White);
-		            whiteLayer.Scale = new Vector2(GameBase.WindowBaseSize.Width, GameBase.WindowBaseSize.Height) / GameBase.SpriteRatioToWindowBase;
-	            return whiteLayer;
-			}
-		}
+
+        internal static pSprite FullscreenWhitePixel
+        {
+            get
+            {
+                pSprite whiteLayer =
+                    new pSprite(pTexture.FromRawBytes(new byte[] { 255, 255, 255, 255 }, 1, 1), FieldTypes.Standard, OriginTypes.TopLeft, ClockTypes.Mode, Vector2.Zero, 1, false, Color4.White);
+                whiteLayer.Scale = new Vector2(GameBase.WindowBaseSize.Width, GameBase.WindowBaseSize.Height) / GameBase.SpriteRatioToWindowBase;
+                return whiteLayer;
+            }
+        }
     }
 
     internal class pSpriteDepthComparer : IComparer<pSprite>
@@ -773,8 +774,8 @@ namespace osum.Graphics.Sprites
         ///   Native screen resolution.
         /// </summary>
         Native,
-		
-		NativeScaled,
+
+        NativeScaled,
 
         /// <summary>
         ///   Native screen resolution with 1024x768-native sprite scaling.

@@ -80,6 +80,7 @@
     <Compile Include="Graphics\Sprites\pSprite_Interaction.cs" />
     <Compile Include="Graphics\Sprites\pText.cs" />
     <Compile Include="Graphics\TextureManager.cs" />
+    <Compile Include="Graphics\UserInterface\BackButton.cs" />
     <Compile Include="Helpers\Audio\AudioReader.cs" />
     <Compile Include="Helpers\Audio\AudioReaderException.cs" />
     <Compile Include="Helpers\Audio\Sound.cs" />

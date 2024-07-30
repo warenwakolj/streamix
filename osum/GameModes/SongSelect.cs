@@ -17,7 +17,6 @@ namespace osum
 {
     public class SongSelect : GameMode
     {
-        pSprite backButton;
         pSprite SongSelectTop;
         public SongSelect() : base()
         {
@@ -35,15 +34,7 @@ namespace osum
             SongSelectTop.Scale = new Vector2(1f, 1f);
 
 
-            backButton = new pSprite(TextureManager.Load("menu-back"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
-                                     ClockTypes.Game, Vector2.Zero, 1, true, new Color4(1, 1, 1, 1f));
-            backButton.Scale = new Vector2(1f, 1f);
-
-            backButton.OnClick += delegate {
-                AudioEngine.PlaySample(OsuSamples.MenuBack);
-                backButton.UnbindAllEvents();
-                Director.ChangeMode(OsuMode.MainMenu);
-            };
+            pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
             spriteManager.Add(backButton);
             spriteManager.Add(SongSelectTop);
         }

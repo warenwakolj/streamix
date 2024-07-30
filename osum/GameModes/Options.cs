@@ -22,16 +22,7 @@ namespace osum.GameModes
 
         internal override void Initialize()
         {
-            //add a temporary button to allow returning to song select
-            pSprite backButton = new pSprite(TextureManager.Load("menu-back"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
-                                     ClockTypes.Game, Vector2.Zero, 1, true, new Color4(1, 1, 1, 0.4f));
-
-            backButton.OnClick += delegate {
-                AudioEngine.PlaySample(OsuSamples.MenuBack);
-                backButton.UnbindAllEvents();
-                Director.ChangeMode(OsuMode.MainMenu);
-            };
-
+            pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
             spriteManager.Add(backButton);
 
             OptionsText = new pText("Options", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);

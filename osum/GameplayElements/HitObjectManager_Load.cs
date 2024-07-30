@@ -207,6 +207,9 @@ namespace osum.GameplayElements
                                         beatmap.DifficultyOverall = Math.Min((byte)10, Math.Max((byte)0, byte.Parse(val)));
                                         //if (!hasApproachRate) DifficultyApproachRate = DifficultyOverall;
                                         break;
+                                    case "ApproachRate":
+                                        beatmap.DifficultyApproachRate = Math.Min((byte)10, Math.Max((byte)0, byte.Parse(val)));
+                                        break;
                                     case "SliderMultiplier":
                                         beatmap.DifficultySliderMultiplier =
                                             Math.Max(0.4, Math.Min(3.6, Double.Parse(val, GameBase.nfi)));
