@@ -5,16 +5,14 @@ using System.IO;
 using OpenTK;
 using OpenTK.Graphics;
 using osum.Helpers;
-using osum;  // Ensure this is included to access SongSelect class
-
+using System.Text.RegularExpressions;
 namespace osum.GameModes.SongSelect
 {
     internal class BeatmapPanel : pSpriteCollection
     {
-        public Beatmap Beatmap { get; private set; }
+        Beatmap beatmap;
 
         pSprite backingPlate;
-        pSprite text;
         Vector2 originalPosition;
         bool isHovered = false;
         bool isSelected = false;
@@ -23,82 +21,58 @@ namespace osum.GameModes.SongSelect
 
         internal BeatmapPanel(Beatmap beatmap)
         {
-            Beatmap = beatmap;
-
             backingPlate = pSprite.FullscreenWhitePixel;
             backingPlate.Alpha = 1;
             backingPlate.AlwaysDraw = true;
             backingPlate.Colour = Color4.OrangeRed;
             backingPlate.Scale.Y = 80;
-            backingPlate.Scale.X *= 0.5f;
-            backingPlate.DrawDepth = 0.1f;
+            backingPlate.DrawDepth = 0.8f;
             SpriteCollection.Add(backingPlate);
 
-            originalPosition = backingPlate.Position;
+            this.beatmap = beatmap;
 
             backingPlate.OnClick += delegate {
-                if (isSelected)
-                {
-                    Player.SetBeatmap(beatmap);
-                    Director.ChangeMode(OsuMode.Play);
-                }
-                else
-                {
-                    if (currentlySelectedPanel != null)
-                    {
-                        currentlySelectedPanel.Deselect();
-                    }
 
-                    Select();
-                }
+                backingPlate.UnbindAllEvents();
+
+                backingPlate.Colour = Color4.LightSkyBlue;
+
+                Player.SetBeatmap(beatmap);
+                Director.ChangeMode(OsuMode.Play);
             };
 
             backingPlate.HandleClickOnUp = true;
 
-            backingPlate.OnHover += delegate {
-                if (!isHovered)
-                {
-                    isHovered = true;
-                    backingPlate.MoveTo(originalPosition - new Vector2(300, 0), 600);
-                }
-            };
+            backingPlate.OnHover += delegate { backingPlate.Colour = Color4.YellowGreen; };
+            backingPlate.OnHoverLost += delegate { backingPlate.Colour = Color4.OrangeRed; };
 
-            backingPlate.OnHoverLost += delegate {
-                if (isHovered)
-                {
-                    isHovered = false;
-                    backingPlate.MoveTo(originalPosition, 600);
-                }
-            };
+            string filename = Path.GetFileNameWithoutExtension(beatmap.BeatmapFilename);
 
-            text = new pText(Path.GetFileNameWithoutExtension(beatmap.BeatmapFilename), 10, Vector2.Zero, Vector2.Zero, 1, true, Color4.White, false);
+            Regex r = new Regex(@"(.*) - (.*) \((.*)\) \[(.*)\]");
+            Match m = r.Match(filename);
+
+            //song name 
+            text = new pText(m.Groups[2].Value, 10, Vector2.Zero, new Vector2(400, 80), 1, true, Color4.White, false);
+            text.Offset = new Vector2(10, 0);
+            SpriteCollection.Add(text);
+
+
+            //artist // mapper
+            text = new pText(m.Groups[3].Value + " // " + m.Groups[1].Value, 6, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
+            text.Offset = new Vector2(11, 15);
+            SpriteCollection.Add(text);
+
+            //difficulty
+            text = new pText(m.Groups[4].Value, 8, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
+            text.TextBold = true;
+            text.Offset = new Vector2(10, 84);
             SpriteCollection.Add(text);
         }
 
         internal void MoveTo(Vector2 location)
         {
-            text.MoveTo(location + new Vector2(10, 10), 400);
-            backingPlate.MoveTo(location, 400);
-
-            originalPosition = location;
-        }
-
-        private void Select()
-        {
-            isSelected = true;
-            currentlySelectedPanel = this;
-
-            backingPlate.Colour = Color4.Orange;
-
-          
-           // SongSelect.UpdateMetadataText(Path.GetFileNameWithoutExtension(Beatmap.BeatmapFilename));
-        }
-
-        private void Deselect()
-        {
-            isSelected = false;
-
-            backingPlate.Colour = Color4.OrangeRed;
+            SpriteCollection.ForEach(s => s.MoveTo(location, 150));
         }
     }
 }
+

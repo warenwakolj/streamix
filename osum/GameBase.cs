@@ -225,7 +225,7 @@ namespace osum
             //Load the main menu initially.
             Director.ChangeMode(OsuMode.MainMenu, new FadeTransition(200,500));
 
-            fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(512,40), 1, true, Color4.White, false);
+            fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(120,40), 1, true, Color4.White, false);
             fpsDisplay.Field = FieldTypes.StandardSnapBottomRight;
             fpsDisplay.Origin = OriginTypes.BottomRight;
             spriteManager.Add(fpsDisplay);
@@ -285,11 +285,10 @@ namespace osum
             weightedAverageFrameTime = weightedAverageFrameTime * 0.98 + ElapsedMilliseconds * 0.02;
             double fps = (1000/weightedAverageFrameTime);
 
-            if (Clock.Time / 5000 == lastFpsDraw) return;
-			lastFpsDraw = Clock.Time / 5000;
+            if (Clock.Time / 5 == lastFpsDraw) return;
+			lastFpsDraw = Clock.Time / 5;
 
-            fpsDisplay.Colour = fps < 59 ? Color.OrangeRed : Color.GreenYellow;
-            fpsDisplay.Text = String.Format("{0:0}fps g{1} a{2} {3}", Math.Round(fps), Clock.Time, Clock.AudioTime, Player.Autoplay ? "AP" : "");
+            fpsDisplay.Text = String.Format("{0:0}fps", Math.Round(fps), Clock.Time, Clock.AudioTime, Player.Autoplay ? "AP" : "");
         }
 
         /// <summary>

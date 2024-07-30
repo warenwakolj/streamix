@@ -58,6 +58,7 @@ namespace osum.Graphics.Sprites
         protected BlendingFactorDest blending;
 
         internal Vector2 Position, Scale;
+        internal Vector2 Offset;
         internal FieldTypes Field;
         internal OriginTypes Origin;
         internal ClockTypes Clocking;
@@ -468,16 +469,19 @@ namespace osum.Graphics.Sprites
                         GameBase.GamefieldToStandard(ref fieldPosition);
                         break;
                     case FieldTypes.NativeScaled:
-                        return Position / GameBase.WindowRatio;
+                        return (Position + Offset) / GameBase.WindowRatio;
                     case FieldTypes.Native:
                     default:
                         fieldPosition = Position;
                         break;
                 }
 
-                return fieldPosition;
+                return fieldPosition + Offset;
             }
         }
+
+
+
 
         protected Vector2 FieldScale
         {

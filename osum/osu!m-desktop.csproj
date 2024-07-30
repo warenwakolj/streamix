@@ -48,6 +48,7 @@
     <Compile Include="GameModes\GameComponent.cs" />
     <Compile Include="GameModes\GameMode.cs" />
     <Compile Include="GameModes\MainMenu.cs" />
+    <Compile Include="GameModes\MainMenu\MenuButton.cs" />
     <Compile Include="GameModes\Play\Components\ComboCounter.cs" />
     <Compile Include="GameModes\Play\Components\Pause.cs" />
     <Compile Include="GameModes\Play\Components\ScoreDisplay.cs" />
@@ -149,9 +150,32 @@
     <Content Include="bass_fx.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\approachcircle.png" />
+    <Content Include="Skins\Default\back-button-layer.png" />
     <Content Include="Skins\Default\beatmapimport-spinner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\button-left.png" />
+    <Content Include="Skins\Default\button-middle.png" />
+    <Content Include="Skins\Default\button-right.png" />
+    <Content Include="Skins\Default\check-off.mp3" />
+    <Content Include="Skins\Default\check-on.mp3" />
+    <Content Include="Skins\Default\circle-empty.png" />
+    <Content Include="Skins\Default\circle-full.png" />
+    <Content Include="Skins\Default\circularmetre.png" />
+    <Content Include="Skins\Default\click-close.mp3" />
+    <Content Include="Skins\Default\click-short-confirm.mp3" />
+    <Content Include="Skins\Default\click-short.mp3" />
+    <Content Include="Skins\Default\comboburst.png" />
+    <Content Include="Skins\Default\commentbox.png" />
+    <Content Include="Skins\Default\count.wav" />
+    <Content Include="Skins\Default\count1.png" />
+    <Content Include="Skins\Default\count2.png" />
+    <Content Include="Skins\Default\count3.png" />
+    <Content Include="Skins\Default\cursor-smoke.png" />
+    <Content Include="Skins\Default\cursor.png" />
+    <Content Include="Skins\Default\cursormiddle.png" />
+    <Content Include="Skins\Default\cursortrail.png" />
     <Content Include="Skins\Default\default-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -194,21 +218,133 @@
     <Content Include="Skins\Default\default-x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\emoji-56397.png" />
+    <Content Include="Skins\Default\emoji-56398.png" />
+    <Content Include="Skins\Default\emoji-56444.png" />
+    <Content Include="Skins\Default\emoji-56832.png" />
+    <Content Include="Skins\Default\emoji-56835.png" />
+    <Content Include="Skins\Default\emoji-56838.png" />
+    <Content Include="Skins\Default\emoji-56840.png" />
+    <Content Include="Skins\Default\emoji-56842.png" />
+    <Content Include="Skins\Default\emoji-56845.png" />
+    <Content Include="Skins\Default\emoji-56846.png" />
+    <Content Include="Skins\Default\emoji-56847.png" />
+    <Content Include="Skins\Default\emoji-56849.png" />
+    <Content Include="Skins\Default\emoji-56854.png" />
+    <Content Include="Skins\Default\emoji-56855.png" />
+    <Content Include="Skins\Default\emoji-56859.png" />
+    <Content Include="Skins\Default\emoji-56864.png" />
+    <Content Include="Skins\Default\emoji-56865.png" />
+    <Content Include="Skins\Default\emoji-56869.png" />
+    <Content Include="Skins\Default\emoji-56876.png" />
+    <Content Include="Skins\Default\emoji-56877.png" />
+    <Content Include="Skins\Default\emoji-56878.png" />
+    <Content Include="Skins\Default\emoji-56879.png" />
+    <Content Include="Skins\Default\epilepsy.png" />
+    <Content Include="Skins\Default\flashlightv2.png" />
+    <Content Include="Skins\Default\followpoint.png" />
+    <Content Include="Skins\Default\fps-0.png" />
+    <Content Include="Skins\Default\fps-1.png" />
+    <Content Include="Skins\Default\fps-2.png" />
+    <Content Include="Skins\Default\fps-3.png" />
+    <Content Include="Skins\Default\fps-4.png" />
+    <Content Include="Skins\Default\fps-5.png" />
+    <Content Include="Skins\Default\fps-6.png" />
+    <Content Include="Skins\Default\fps-7.png" />
+    <Content Include="Skins\Default\fps-8.png" />
+    <Content Include="Skins\Default\fps-9.png" />
+    <Content Include="Skins\Default\fps-comma.png" />
+    <Content Include="Skins\Default\fps-fps.png" />
     <Content Include="Skins\Default\go.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\heartbeat-xmas.mp3" />
+    <Content Include="Skins\Default\heartbeat.mp3" />
+    <Content Include="Skins\Default\hit0.png" />
+    <Content Include="Skins\Default\hit100.png" />
+    <Content Include="Skins\Default\hit100k.png" />
+    <Content Include="Skins\Default\hit300.png" />
+    <Content Include="Skins\Default\hit300g.png" />
+    <Content Include="Skins\Default\hit300k.png" />
+    <Content Include="Skins\Default\hit50.png" />
+    <Content Include="Skins\Default\hitcircle.png" />
+    <Content Include="Skins\Default\hitcircleoverlay.png" />
+    <Content Include="Skins\Default\hitcircleselect.png" />
+    <Content Include="Skins\Default\inputoverlay-background.png" />
+    <Content Include="Skins\Default\inputoverlay-key.png" />
+    <Content Include="Skins\Default\levelbar-bg.png" />
+    <Content Include="Skins\Default\levelbar.png" />
+    <Content Include="Skins\Default\lighting.png" />
+    <Content Include="Skins\Default\loading-small.png" />
+    <Content Include="Skins\Default\lobby-avatar.png" />
+    <Content Include="Skins\Default\lobby-boot.png" />
+    <Content Include="Skins\Default\lobby-crown.png" />
+    <Content Include="Skins\Default\lobby-lock.png" />
+    <Content Include="Skins\Default\lobby-unlock.png" />
+    <Content Include="Skins\Default\masking-border.png" />
+    <Content Include="Skins\Default\menu-back.png" />
+    <Content Include="Skins\Default\menu-background-xmas-1.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-10.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-11.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-12.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-13.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-2.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-3.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-4.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-5.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-6.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-7.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-8.jpg" />
+    <Content Include="Skins\Default\menu-background-xmas-9.jpg" />
     <Content Include="Skins\Default\menu-background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\menu-bat.png" />
+    <Content Include="Skins\Default\menu-button-back-over.png" />
+    <Content Include="Skins\Default\menu-button-back.png" />
+    <Content Include="Skins\Default\menu-button-background.png" />
+    <Content Include="Skins\Default\menu-button-edit-over.png" />
+    <Content Include="Skins\Default\menu-button-edit.png" />
+    <Content Include="Skins\Default\menu-button-exit-over.png" />
+    <Content Include="Skins\Default\menu-button-exit.png" />
+    <Content Include="Skins\Default\menu-button-freeplay-over.png" />
+    <Content Include="Skins\Default\menu-button-freeplay.png" />
+    <Content Include="Skins\Default\menu-button-multiplayer-over.png" />
+    <Content Include="Skins\Default\menu-button-multiplayer.png" />
+    <Content Include="Skins\Default\menu-button-options-over.png" />
+    <Content Include="Skins\Default\menu-button-options.png" />
+    <Content Include="Skins\Default\menu-button-play-over.png" />
+    <Content Include="Skins\Default\menu-button-play.png" />
+    <Content Include="Skins\Default\menu-button-special-over.png" />
+    <Content Include="Skins\Default\menu-button-special.png" />
+    <Content Include="Skins\Default\menu-connection.png" />
+    <Content Include="Skins\Default\menu-copyright.png" />
     <Content Include="Skins\Default\menu-explosion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\menu-flash.png" />
+    <Content Include="Skins\Default\menu-np.png" />
+    <Content Include="Skins\Default\menu-osu-shockwave.png" />
     <Content Include="Skins\Default\menu-osu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\menu-osudirect-over.png" />
+    <Content Include="Skins\Default\menu-osudirect.png" />
+    <Content Include="Skins\Default\menu-subscriber.png" />
+    <Content Include="Skins\Default\menu-update.png" />
+    <Content Include="Skins\Default\menu-vis.png" />
+    <Content Include="Skins\Default\menuback.mp3" />
+    <Content Include="Skins\Default\menuback.wav" />
+    <Content Include="Skins\Default\menuclick.mp3" />
+    <Content Include="Skins\Default\menuclick.wav" />
+    <Content Include="Skins\Default\menuhit.mp3" />
     <Content Include="Skins\Default\menuhit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\mode-osu-med.png" />
+    <Content Include="Skins\Default\mode-osu-small.png" />
+    <Content Include="Skins\Default\mode-osu.png" />
+    <Content Include="Skins\Default\multi-skipped.png" />
     <Content Include="Skins\Default\normal-hitclap.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -227,9 +363,68 @@
     <Content Include="Skins\Default\normal-slidertick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\notification.png" />
+    <Content Include="Skins\Default\overlay-1x.png" />
+    <Content Include="Skins\Default\overlay-discussion.png" />
+    <Content Include="Skins\Default\overlay-discussion2.png" />
+    <Content Include="Skins\Default\overlay-endreplay.png" />
+    <Content Include="Skins\Default\overlay-half.png" />
+    <Content Include="Skins\Default\overlay-hide.png" />
+    <Content Include="Skins\Default\overlay-hidemode.png" />
+    <Content Include="Skins\Default\overlay-hidemode2.png" />
+    <Content Include="Skins\Default\overlay-online.png" />
+    <Content Include="Skins\Default\overlay-options.png" />
+    <Content Include="Skins\Default\overlay-options2.png" />
+    <Content Include="Skins\Default\overlay-show.png" />
+    <Content Include="Skins\Default\overlay-ticker.png" />
+    <Content Include="Skins\Default\overlay-ticker2.png" />
+    <Content Include="Skins\Default\particle100.png" />
+    <Content Include="Skins\Default\particle300.png" />
+    <Content Include="Skins\Default\particle50.png" />
+    <Content Include="Skins\Default\pause-back.png" />
+    <Content Include="Skins\Default\pause-continue.png" />
+    <Content Include="Skins\Default\pause-replay.png" />
+    <Content Include="Skins\Default\pause-retry.png" />
     <Content Include="Skins\Default\play-skip.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\play-unranked.png" />
+    <Content Include="Skins\Default\play-warningarrow.png" />
+    <Content Include="Skins\Default\rank-forum.png" />
+    <Content Include="Skins\Default\rank-next.png" />
+    <Content Include="Skins\Default\rank-offline.png" />
+    <Content Include="Skins\Default\rank-online.png" />
+    <Content Include="Skins\Default\rank-prev.png" />
+    <Content Include="Skins\Default\rank-refresh.png" />
+    <Content Include="Skins\Default\ranking-A-small.png" />
+    <Content Include="Skins\Default\ranking-A.png" />
+    <Content Include="Skins\Default\ranking-accuracy.png" />
+    <Content Include="Skins\Default\ranking-B-small.png" />
+    <Content Include="Skins\Default\ranking-B.png" />
+    <Content Include="Skins\Default\ranking-background-overlay.png" />
+    <Content Include="Skins\Default\ranking-C-small.png" />
+    <Content Include="Skins\Default\ranking-C.png" />
+    <Content Include="Skins\Default\ranking-D-small.png" />
+    <Content Include="Skins\Default\ranking-D.png" />
+    <Content Include="Skins\Default\ranking-dialog-left.png" />
+    <Content Include="Skins\Default\ranking-dialog-middle.png" />
+    <Content Include="Skins\Default\ranking-dialog-right.png" />
+    <Content Include="Skins\Default\ranking-graph.png" />
+    <Content Include="Skins\Default\ranking-maxcombo.png" />
+    <Content Include="Skins\Default\ranking-panel.png" />
+    <Content Include="Skins\Default\ranking-perfect.png" />
+    <Content Include="Skins\Default\ranking-S-small.png" />
+    <Content Include="Skins\Default\ranking-S.png" />
+    <Content Include="Skins\Default\ranking-SH-small.png" />
+    <Content Include="Skins\Default\ranking-SH.png" />
+    <Content Include="Skins\Default\ranking-title.png" />
+    <Content Include="Skins\Default\ranking-winner.png" />
+    <Content Include="Skins\Default\ranking-X-small.png" />
+    <Content Include="Skins\Default\ranking-X.png" />
+    <Content Include="Skins\Default\ranking-XH-small.png" />
+    <Content Include="Skins\Default\ranking-XH.png" />
+    <Content Include="Skins\Default\ready.png" />
+    <Content Include="Skins\Default\reversearrow.png" />
     <Content Include="Skins\Default\score-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -287,6 +482,7 @@
     <Content Include="Skins\Default\scorebar-colour-3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\scorebar-colour.png" />
     <Content Include="Skins\Default\scorebar-ki.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -296,6 +492,63 @@
     <Content Include="Skins\Default\scorebar-kidanger2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\scorebar-marker.png" />
+    <Content Include="Skins\Default\searching.png" />
+    <Content Include="Skins\Default\section-fail.png" />
+    <Content Include="Skins\Default\section-pass.png" />
+    <Content Include="Skins\Default\seekbar-over.png" />
+    <Content Include="Skins\Default\seeya.mp3" />
+    <Content Include="Skins\Default\select-difficulty.mp3" />
+    <Content Include="Skins\Default\select-expand.mp3" />
+    <Content Include="Skins\Default\selection-approved.png" />
+    <Content Include="Skins\Default\selection-drop.png" />
+    <Content Include="Skins\Default\selection-latestranked.png" />
+    <Content Include="Skins\Default\selection-mod-autoplay.png" />
+    <Content Include="Skins\Default\selection-mod-cinema.png" />
+    <Content Include="Skins\Default\selection-mod-doubletime.png" />
+    <Content Include="Skins\Default\selection-mod-easy.png" />
+    <Content Include="Skins\Default\selection-mod-fadein.png" />
+    <Content Include="Skins\Default\selection-mod-fadeout.png" />
+    <Content Include="Skins\Default\selection-mod-flashlight.png" />
+    <Content Include="Skins\Default\selection-mod-halftime.png" />
+    <Content Include="Skins\Default\selection-mod-hardrock.png" />
+    <Content Include="Skins\Default\selection-mod-hidden.png" />
+    <Content Include="Skins\Default\selection-mod-key1.png" />
+    <Content Include="Skins\Default\selection-mod-key2.png" />
+    <Content Include="Skins\Default\selection-mod-key3.png" />
+    <Content Include="Skins\Default\selection-mod-key4.png" />
+    <Content Include="Skins\Default\selection-mod-key5.png" />
+    <Content Include="Skins\Default\selection-mod-key6.png" />
+    <Content Include="Skins\Default\selection-mod-key7.png" />
+    <Content Include="Skins\Default\selection-mod-key8.png" />
+    <Content Include="Skins\Default\selection-mod-key9.png" />
+    <Content Include="Skins\Default\selection-mod-keycoop.png" />
+    <Content Include="Skins\Default\selection-mod-nightcore.png" />
+    <Content Include="Skins\Default\selection-mod-nofail.png" />
+    <Content Include="Skins\Default\selection-mod-perfect.png" />
+    <Content Include="Skins\Default\selection-mod-random.png" />
+    <Content Include="Skins\Default\selection-mod-relax.png" />
+    <Content Include="Skins\Default\selection-mod-relax2.png" />
+    <Content Include="Skins\Default\selection-mod-spunout.png" />
+    <Content Include="Skins\Default\selection-mod-suddendeath.png" />
+    <Content Include="Skins\Default\selection-mode-over.png" />
+    <Content Include="Skins\Default\selection-mode.png" />
+    <Content Include="Skins\Default\selection-mods-over.png" />
+    <Content Include="Skins\Default\selection-mods.png" />
+    <Content Include="Skins\Default\selection-norecords.png" />
+    <Content Include="Skins\Default\selection-notranked.png" />
+    <Content Include="Skins\Default\selection-notsubmitted.png" />
+    <Content Include="Skins\Default\selection-options-over.png" />
+    <Content Include="Skins\Default\selection-options.png" />
+    <Content Include="Skins\Default\selection-question.png" />
+    <Content Include="Skins\Default\selection-random-over.png" />
+    <Content Include="Skins\Default\selection-random.png" />
+    <Content Include="Skins\Default\selection-ranked.png" />
+    <Content Include="Skins\Default\selection-tab-add.png" />
+    <Content Include="Skins\Default\selection-tab-close.png" />
+    <Content Include="Skins\Default\selection-tab.png" />
+    <Content Include="Skins\Default\selection-unknown.png" />
+    <Content Include="Skins\Default\selection-update.png" />
     <Content Include="Skins\Default\sliderb-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -326,12 +579,27 @@
     <Content Include="Skins\Default\sliderb-9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\sliderb-nd.png" />
+    <Content Include="Skins\Default\sliderb-spec.png" />
+    <Content Include="Skins\Default\sliderb0.png" />
+    <Content Include="Skins\Default\sliderb1.png" />
+    <Content Include="Skins\Default\sliderb2.png" />
+    <Content Include="Skins\Default\sliderb3.png" />
+    <Content Include="Skins\Default\sliderb4.png" />
+    <Content Include="Skins\Default\sliderb5.png" />
+    <Content Include="Skins\Default\sliderb6.png" />
+    <Content Include="Skins\Default\sliderb7.png" />
+    <Content Include="Skins\Default\sliderb8.png" />
+    <Content Include="Skins\Default\sliderb9.png" />
+    <Content Include="Skins\Default\sliderbar.mp3" />
+    <Content Include="Skins\Default\sliderfollowcircle.png" />
     <Content Include="Skins\Default\sliderpoint10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\Default\sliderpoint30.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\sliderscorepoint.png" />
     <Content Include="Skins\Default\soft-hitclap.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -353,21 +621,27 @@
     <Content Include="Skins\Default\soft-sliderwhistle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\songselect-bottom.png" />
+    <Content Include="Skins\Default\songselect-top.png" />
     <Content Include="Skins\Default\spinner-approachcircle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\Default\spinner-background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\spinner-bottom.png" />
     <Content Include="Skins\Default\spinner-circle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\Default\spinner-clear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\spinner-glow.png" />
     <Content Include="Skins\Default\spinner-metre.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\spinner-middle.png" />
+    <Content Include="Skins\Default\spinner-middle2.png" />
     <Content Include="Skins\Default\spinner-osu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -377,6 +651,7 @@
     <Content Include="Skins\Default\spinner-spin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\spinner-top.png" />
     <Content Include="Skins\Default\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -386,9 +661,60 @@
     <Content Include="Skins\Default\star3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\Default\test-build-overlay.png" />
+    <Content Include="Skins\Default\topmenu-bg.png" />
+    <Content Include="Skins\Default\topmenu-selection.png" />
+    <Content Include="Skins\Default\triangle.png" />
+    <Content Include="Skins\Default\unpause.png" />
+    <Content Include="Skins\Default\user-bg.png" />
+    <Content Include="Skins\Default\user-border.png" />
+    <Content Include="Skins\Default\volume-background-gradient.png" />
+    <Content Include="Skins\Default\volume-bar.png" />
+    <Content Include="Skins\Default\volume-bg-effect.png" />
+    <Content Include="Skins\Default\volume-bg-music.png" />
+    <Content Include="Skins\Default\volume-bg.png" />
+    <Content Include="Skins\Default\volume-circle-bg.png" />
+    <Content Include="Skins\Default\volume-circle-fg.png" />
+    <Content Include="Skins\Default\volume-circle-fg2.png" />
+    <Content Include="Skins\Default\welcome.mp3" />
+    <Content Include="Skins\Default\welcome_piano.mp3" />
+    <Content Include="Skins\Default\welcome_text.png" />
+    <Content Include="Skins\Default\whoosh.mp3" />
+    <Content Include="Skins\Default\worldmap.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Beatmaps\" />
     <Folder Include="GameModes\Play\Rulesets\Osu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skins\Default\Aller.ttf" />
+    <None Include="Skins\Default\Aller_Bd.ttf" />
+    <None Include="Skins\Default\Aller_Lt.ttf" />
+    <None Include="Skins\Default\bloom.fs" />
+    <None Include="Skins\Default\Exo2.0-Black.otf" />
+    <None Include="Skins\Default\Exo2.0-BlackItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-Bold.otf" />
+    <None Include="Skins\Default\Exo2.0-BoldItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-ExtraBold.otf" />
+    <None Include="Skins\Default\Exo2.0-ExtraBoldItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-ExtraLight.otf" />
+    <None Include="Skins\Default\Exo2.0-ExtraLightItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-Italic.otf" />
+    <None Include="Skins\Default\Exo2.0-Light.otf" />
+    <None Include="Skins\Default\Exo2.0-LightItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-Medium.otf" />
+    <None Include="Skins\Default\Exo2.0-MediumItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-Regular.otf" />
+    <None Include="Skins\Default\Exo2.0-SemiBold.otf" />
+    <None Include="Skins\Default\Exo2.0-SemiBoldItalic.otf" />
+    <None Include="Skins\Default\Exo2.0-Thin.otf" />
+    <None Include="Skins\Default\Exo2.0-ThinItalic.otf" />
+    <None Include="Skins\Default\FontAwesome.ttf" />
+    <None Include="Skins\Default\mblurh.fs" />
+    <None Include="Skins\Default\mblurv.fs" />
+    <None Include="Skins\Default\nekodex - welcome to christmas!.osz2" />
+    <None Include="Skins\Default\nekodex - welcome to osu!.osz2" />
+    <None Include="Skins\Default\osu!font.ttf" />
+    <None Include="Skins\Default\SliderB.blend" />
   </ItemGroup>
 </Project>

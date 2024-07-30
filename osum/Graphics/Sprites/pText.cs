@@ -129,7 +129,7 @@ namespace osum.Graphics.Sprites
             textChanged = false;
 
             if (string.IsNullOrEmpty(Text) && TextBounds.X == 0)
-            {
+            {   
                 lastMeasure = TextBounds;
                 return null;
             }

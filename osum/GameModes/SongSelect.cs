@@ -18,6 +18,7 @@ namespace osum
     public class SongSelect : GameMode
     {
         pSprite SongSelectTop;
+        pSprite SongSelectBottom;
         public SongSelect() : base()
         {
         }
@@ -34,10 +35,17 @@ namespace osum
                          ClockTypes.Game, Vector2.Zero, 2, true, new Color4(1, 1, 1, 1f));
             SongSelectTop.Scale = new Vector2(1f, 1f);
 
+            InputManager.OnMove += InputManager_OnMove;
+            SongSelectBottom = new pSprite(TextureManager.Load("songselect-bottom"), FieldTypes.Standard, OriginTypes.BottomLeft,
+                         ClockTypes.Game, Vector2.Zero, 2, true, new Color4(1, 1, 1, 1f));
+            SongSelectBottom.Scale = new Vector2(1f, 1f);
+
 
             pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
             spriteManager.Add(backButton);
             spriteManager.Add(SongSelectTop);
+            spriteManager.Add(SongSelectBottom);
+
             MetadataText = new pText("Metadata", 10, Vector2.Zero, new Vector2(0, 0), 3, true, Color4.White, false);
             spriteManager.Add(MetadataText);
         }

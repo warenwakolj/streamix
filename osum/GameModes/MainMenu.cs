@@ -13,8 +13,10 @@ using osum.Audio;
 using osum.Support;
 using osum.Graphics;
 using System.IO;
+using osum.GameModes.MainMenu;
+using osum.GameplayElements.Beatmaps;
 
-namespace osum.GameModes
+namespace osum
 {
     class MainMenu : GameMode
     {
@@ -32,92 +34,28 @@ namespace osum.GameModes
                             ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
             spriteManager.Add(menuBackground);
 
+            MenuButton ButtonPlay = new MenuButton("Play", OsuMode.SongSelect);
+            spriteManager.Add(ButtonPlay);
+            ButtonPlay.SetPosition(new Vector2(200, 120));
+            MenuButton ButtonOptions = new MenuButton("Options", OsuMode.Options);
+            spriteManager.Add(ButtonOptions);
+            ButtonOptions.SetPosition(new Vector2(200, 180));
+            MenuButton ButtonQuit = new MenuButton("Quit", OsuMode.SongSelect);
+            spriteManager.Add(ButtonQuit);
+            ButtonQuit.SetPosition(new Vector2(200, 240));
+
+
             osuLogo = new pSprite(TextureManager.Load(@"menu-osu"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(-120, 0), 1.0f, true, Color4.White);
             spriteManager.Add(osuLogo);
 
-            // Adding play button
-            playButton = new pSprite(TextureManager.Load(@"menu-button-play"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(80, -60), 1.0f, true, Color4.White);
-            playButton.OnClick += playButton_OnClick;
-            playButton.OnHover += playButton_OnHover;
-            playButton.onHoverLost += playButton_OnHoverEnd;
-            spriteManager.Add(playButton);
 
-            // Adding options button
-            optionsButton = new pSprite(TextureManager.Load(@"menu-button-options"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(80, 0), 1.0f, true, Color4.White);
-            optionsButton.OnClick += optionsButton_OnClick;
-            optionsButton.OnHover += optionsButton_OnHover;
-            optionsButton.onHoverLost += optionsButton_OnHoverEnd;
-            spriteManager.Add(optionsButton);
-
-            // Adding exit button
-            exitButton = new pSprite(TextureManager.Load(@"menu-button-exit"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(80, 60), 1.0f, true, Color4.White);
-            exitButton.OnClick += exitButton_OnClick;
-            exitButton.OnHover += exitButton_OnHover;
-            exitButton.onHoverLost += exitButton_OnHoverEnd;
-            spriteManager.Add(exitButton);
         }
 
-        private void playButton_OnClick(object sender, EventArgs e)
-        {
-            if (!Director.IsTransitioning)
-            {
-                AudioEngine.PlaySample(OsuSamples.MenuHit);
-                Director.ChangeMode(OsuMode.SongSelect, new FadeTransition());
-            }
-        }
 
-        private void optionsButton_OnClick(object sender, EventArgs e)
-        {
-            if (!Director.IsTransitioning)
-            {
-                AudioEngine.PlaySample(OsuSamples.MenuHit);
-                Director.ChangeMode(OsuMode.Options, new FadeTransition());
-            }
-        }
-
-        private void exitButton_OnClick(object sender, EventArgs e)
-        {
-            if (!Director.IsTransitioning)
-            {
-                AudioEngine.PlaySample(OsuSamples.MenuHit);
-                Environment.Exit(0);
-            }
-        }
 
         private pSprite menuBackground;
 
-        private void playButton_OnHover(object sender, EventArgs e)
-        {
-            AudioEngine.PlaySample(OsuSamples.MenuClick);
-            playButton.Texture = TextureManager.Load(@"menu-button-play-over");
-        }
-
-        private void playButton_OnHoverEnd(object sender, EventArgs e)
-        {
-            playButton.Texture = TextureManager.Load(@"menu-button-play");
-        }
-
-        private void optionsButton_OnHover(object sender, EventArgs e)
-        {
-            AudioEngine.PlaySample(OsuSamples.MenuClick);
-            optionsButton.Texture = TextureManager.Load(@"menu-button-options-over");
-        }
-
-        private void optionsButton_OnHoverEnd(object sender, EventArgs e)
-        {
-            optionsButton.Texture = TextureManager.Load(@"menu-button-options");
-        }
-
-        private void exitButton_OnHover(object sender, EventArgs e)
-        {
-            AudioEngine.PlaySample(OsuSamples.MenuClick);
-            exitButton.Texture = TextureManager.Load(@"menu-button-exit-over");
-        }
-
-        private void exitButton_OnHoverEnd(object sender, EventArgs e)
-        {
-            exitButton.Texture = TextureManager.Load(@"menu-button-exit");
-        }
+   
 
         public override void Update()
         {
