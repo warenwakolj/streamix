@@ -27,8 +27,6 @@ namespace osum.GameModes
         HealthBar healthBar;
         ScoreDisplay scoreDisplay;
         ComboCounter comboCounter;
-		pSprite backButton;
-        pSprite rankingButton;
 
         Score currentScore;
 
@@ -65,16 +63,6 @@ namespace osum.GameModes
 
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
-
-            backButton = new pSprite(TextureManager.Load("menu-back"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
-                                     ClockTypes.Game, Vector2.Zero, 1, true, new Color4(1, 1, 1, 0.4f));
-            backButton.Scale = new Vector2(0.1f, 0.1f);
-
-            backButton.OnClick += delegate {
-                backButton.UnbindAllEvents();
-                Director.ChangeMode(OsuMode.SongSelect);
-            };
-            spriteManager.Add(backButton);
         }
 
         public override void Dispose()
@@ -88,7 +76,6 @@ namespace osum.GameModes
             healthBar.Dispose();
             scoreDisplay.Dispose();
             comboCounter.Dispose();
-            backButton.Dispose();
 
             base.Dispose();
         }

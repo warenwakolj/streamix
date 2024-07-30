@@ -44,6 +44,7 @@
     <Compile Include="Audio\SoundEffectPlayer.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="GameBase.cs" />
+    <Compile Include="GameModes\Failed.cs" />
     <Compile Include="GameModes\GameComponent.cs" />
     <Compile Include="GameModes\GameMode.cs" />
     <Compile Include="GameModes\MainMenu.cs" />

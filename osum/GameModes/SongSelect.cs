@@ -23,20 +23,23 @@ namespace osum
         }
 
         static List<Beatmap> availableMaps;
-
+        internal static pText MetadataText;
+        
         internal override void Initialize()
         {
             InitializeBeatmaps();
 			
 			InputManager.OnMove += InputManager_OnMove;
             SongSelectTop = new pSprite(TextureManager.Load("songselect-top"), FieldTypes.Standard, OriginTypes.TopLeft,
-                         ClockTypes.Game, Vector2.Zero, 1, true, new Color4(1, 1, 1, 1f));
+                         ClockTypes.Game, Vector2.Zero, 2, true, new Color4(1, 1, 1, 1f));
             SongSelectTop.Scale = new Vector2(1f, 1f);
 
 
             pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
             spriteManager.Add(backButton);
             spriteManager.Add(SongSelectTop);
+            MetadataText = new pText("Metadata", 10, Vector2.Zero, new Vector2(0, 0), 3, true, Color4.White, false);
+            spriteManager.Add(MetadataText);
         }
 
         void InputManager_OnMove(InputSource source, TrackingPoint trackingPoint)
@@ -44,8 +47,16 @@ namespace osum
             if (InputManager.IsPressed)
                 offset += trackingPoint.WindowDelta.Y;	
         }
-		
-		public override void Dispose()
+
+        public static void UpdateMetadataText(string text)
+        {
+            if (MetadataText != null)
+            {
+                MetadataText.Text = text;
+            }
+        }   
+
+        public override void Dispose()
 		{
 			base.Dispose();
 			

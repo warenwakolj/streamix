@@ -81,6 +81,9 @@ namespace osum
                 case OsuMode.Options:
                     mode = new Options();
                     break;
+                case OsuMode.Failed:
+                    mode = new Failed();
+                    break;
             }
 
             //Can we ever fail to create a mode?

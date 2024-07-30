@@ -12,4 +12,3 @@
 - private server support
 - skinning support
 - make the followpoints rotated
-- add fail screen

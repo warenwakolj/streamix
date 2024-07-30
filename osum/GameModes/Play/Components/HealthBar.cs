@@ -9,6 +9,7 @@ using osum.Helpers;
 using osum.Graphics.Skins;
 using OpenTK.Graphics;
 using osum.GameModes;
+using osum.Support;
 
 namespace osum.GameplayElements.Scoring
 {
@@ -122,12 +123,12 @@ namespace osum.GameplayElements.Scoring
             else if (s_kiIcon.Texture != t_kiNormal)
                 s_kiIcon.Texture = t_kiNormal;
 
-            //HP Bar
+            // HP Bar
             if (DisplayHp < CurrentHp)
             {
                 if (InitialIncrease)
                 {
-                    //if (InitialIncreaseStartTime < AudioEngine.Time && (Player.Recovering || AudioEngine.AudioState == AudioStates.Playing))
+                    // if (InitialIncreaseStartTime < AudioEngine.Time && (Player.Recovering || AudioEngine.AudioState == AudioStates.Playing))
                     {
                         DisplayHp = Math.Min(HP_BAR_MAXIMUM, DisplayHp + InitialIncreaseRate * GameBase.ElapsedMilliseconds);
                         if (s_kiIcon.Transformations.Count == 0)
@@ -147,13 +148,18 @@ namespace osum.GameplayElements.Scoring
                 DisplayHp = Math.Max(0, DisplayHp - Math.Abs(DisplayHp - CurrentHp) / 6 * GameBase.ElapsedMilliseconds * 0.1);
             }
 
-
             s_barFill.DrawWidth = (int)Math.Min(s_barFill.Width, Math.Max(0, (s_barFill.Width * (DisplayHp / HP_BAR_MAXIMUM))));
 
-            //Sync Ki icon position with the end of the scorebar fill.
+            // Sync Ki icon position with the end of the scorebar fill.
             s_kiIcon.Position = new Vector2(CurrentXPosition, s_kiIcon.Position.Y);
 
+            // Check if HP is zero and trigger fail screen
+            if (CurrentHp == 0)
+            {
+                Director.ChangeMode(OsuMode.Failed, new FadeTransition());
+            }
         }
+
 
         internal virtual void Draw()
         {

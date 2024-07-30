@@ -12,7 +12,7 @@ namespace osum.GameplayElements
         /// <summary>
         /// Radius of hitObjects in a gamefield.
         /// </summary>
-        public static float HitObjectRadius { get { return 90 * GameBase.SpriteRatioToWindowBase; } }
+        public static float HitObjectRadius { get { return 48 * GameBase.SpriteRatioToWindowBase; } }
         public static float HitObjectSizeModifier = 1f;
 
         public static int SliderVelocity = 300;
