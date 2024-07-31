@@ -464,13 +464,20 @@ namespace osum.Graphics.Sprites
                     case FieldTypes.StandardSnapBottomRight:
                         fieldPosition = new Vector2(GameBase.WindowBaseSize.Width - Position.X, GameBase.WindowBaseSize.Height - Position.Y);
                         break;
+
+                    case FieldTypes.StandardSnapTopCentre:
+                        fieldPosition = new Vector2(GameBase.WindowBaseSize.Width / 2 + Position.X,
+                                                    Position.Y);
+                        break;
                     case FieldTypes.Gamefield512x384:
                         fieldPosition = Position;
                         GameBase.GamefieldToStandard(ref fieldPosition);
                         break;
                     case FieldTypes.NativeScaled:
                         return (Position + Offset) / GameBase.WindowRatio;
+                        break;
                     case FieldTypes.Native:
+                 
                     default:
                         fieldPosition = Position;
                         break;
@@ -760,6 +767,8 @@ namespace osum.Graphics.Sprites
         ///   Aligns from the centre-right point of the screen, where a position of 0 is translated to Standard(640,320).
         /// </summary>
         StandardSnapCentreRight,
+
+        StandardSnapTopCentre,
 
         /// <summary>
         ///   Aligns from the right-hand side of the screen but ignores scaling, rendering at raw dimensions (used for pText when

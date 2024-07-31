@@ -84,6 +84,7 @@
     <Compile Include="Graphics\Sprites\pText.cs" />
     <Compile Include="Graphics\TextureManager.cs" />
     <Compile Include="Graphics\UserInterface\BackButton.cs" />
+    <Compile Include="Graphics\UserInterface\CheckBox.cs" />
     <Compile Include="Helpers\Audio\AudioReader.cs" />
     <Compile Include="Helpers\Audio\AudioReaderException.cs" />
     <Compile Include="Helpers\Audio\Sound.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Helpers\osu!common\MapStream.cs" />
     <Compile Include="Helpers\pList.cs" />
     <Compile Include="Helpers\pMathHelper.cs" />
+    <Compile Include="Input\KeyboardHandler.cs" />
     <Compile Include="Input\Sources\InputSource.cs" />
     <Compile Include="Input\Sources\InputSourceMouse.cs" />
     <Compile Include="Input\TrackingPoint.cs" />
