@@ -16,7 +16,9 @@ namespace osum
         
         override public void MainLoop()
         {
+
             gameWindow = new GameWindowDesktop();
+
             gameWindow.Run();
         }
 

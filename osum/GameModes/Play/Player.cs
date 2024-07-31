@@ -27,6 +27,7 @@ namespace osum.GameModes
         HealthBar healthBar;
         ScoreDisplay scoreDisplay;
         ComboCounter comboCounter;
+        private CursorSprite cursorSprite;
 
         Score currentScore;
 
@@ -60,6 +61,9 @@ namespace osum.GameModes
             comboCounter = new ComboCounter();
 
             currentScore = new Score();
+
+            cursorSprite = new CursorSprite();
+            cursorSprite.AddToSpriteManager(spriteManager);
 
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
@@ -148,7 +152,10 @@ namespace osum.GameModes
                 return; 
             }
 
+
             hitObjectManager.Update();
+
+            cursorSprite.Update();
 
             healthBar.Update();
             scoreDisplay.Update();

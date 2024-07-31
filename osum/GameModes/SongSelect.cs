@@ -19,6 +19,7 @@ namespace osum
     {
         pSprite SongSelectTop;
         pSprite SongSelectBottom;
+        private CursorSprite cursorSprite;
         public SongSelect() : base()
         {
         }
@@ -48,6 +49,10 @@ namespace osum
 
             MetadataText = new pText("Metadata", 10, Vector2.Zero, new Vector2(0, 0), 3, true, Color4.White, false);
             spriteManager.Add(MetadataText);
+
+            cursorSprite = new CursorSprite();
+            cursorSprite.AddToSpriteManager(spriteManager);
+
         }
 
         void InputManager_OnMove(InputSource source, TrackingPoint trackingPoint)
@@ -125,8 +130,9 @@ namespace osum
         public override void Update()
         {
             base.Update();
-			
-			if (Director.PendingMode == OsuMode.Unknown)
+            cursorSprite.Update();
+
+            if (Director.PendingMode == OsuMode.Unknown)
 			{
 				Vector2 pos = new Vector2(320,-10 + offset);
 				foreach (BeatmapPanel p in panels)

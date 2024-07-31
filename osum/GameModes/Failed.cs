@@ -15,6 +15,7 @@ namespace osum.GameModes
     {
         pSprite retryButton;
         pSprite backButton;
+        private CursorSprite cursorSprite;
         internal static pText OptionsText;
 
 
@@ -42,6 +43,8 @@ namespace osum.GameModes
 
             OptionsText = new pText("Failed", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
             spriteManager.Add(OptionsText);
+            cursorSprite = new CursorSprite();
+            cursorSprite.AddToSpriteManager(spriteManager);
         }
 
         public Failed()
@@ -55,6 +58,7 @@ namespace osum.GameModes
 
         public override void Update()
         {
+            cursorSprite.Update();
             base.Update();
 
         }

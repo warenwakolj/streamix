@@ -14,6 +14,7 @@ namespace osum.GameModes
     {
         internal static Score RankableScore;
         internal static pText ScoreDisplay;
+        private CursorSprite cursorSprite;
 
 
         List<pSprite> fillSprites = new List<pSprite>();
@@ -27,6 +28,8 @@ namespace osum.GameModes
 
             ScoreDisplay = new pText("", 10, Vector2.Zero, new Vector2(512, 40), 1, true, Color4.White, false);
             spriteManager.Add(ScoreDisplay);
+            cursorSprite = new CursorSprite();
+            cursorSprite.AddToSpriteManager(spriteManager);
         }
 
         public Ranking()
@@ -35,6 +38,7 @@ namespace osum.GameModes
 
         public override void Draw()
         {
+            cursorSprite.Update();
             base.Draw();
         }
 

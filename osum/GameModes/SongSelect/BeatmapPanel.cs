@@ -13,11 +13,7 @@ namespace osum.GameModes.SongSelect
         Beatmap beatmap;
 
         pSprite backingPlate;
-        Vector2 originalPosition;
-        bool isHovered = false;
-        bool isSelected = false;
-
-        private static BeatmapPanel currentlySelectedPanel;
+        pText text;
 
         internal BeatmapPanel(Beatmap beatmap)
         {

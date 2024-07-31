@@ -44,6 +44,7 @@
     <Compile Include="Audio\SoundEffectPlayer.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="GameBase.cs" />
+    <Compile Include="GameModes\CursorSprite.cs" />
     <Compile Include="GameModes\Failed.cs" />
     <Compile Include="GameModes\GameComponent.cs" />
     <Compile Include="GameModes\GameMode.cs" />
@@ -127,10 +128,8 @@
     <Compile Include="Support\Transition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenTK, Version=1.0.0.201, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\OpenTK.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Data" />
@@ -687,6 +686,7 @@
     <Folder Include="GameModes\Play\Rulesets\Osu\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Skins\Default\Aller.ttf" />
     <None Include="Skins\Default\Aller_Bd.ttf" />
     <None Include="Skins\Default\Aller_Lt.ttf" />

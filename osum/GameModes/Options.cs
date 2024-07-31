@@ -14,7 +14,7 @@ namespace osum.GameModes
     {
         internal static Score RankableScore;
         internal static pText OptionsText;
-
+        private CursorSprite cursorSprite;
 
         List<pSprite> fillSprites = new List<pSprite>();
 
@@ -27,6 +27,8 @@ namespace osum.GameModes
 
             OptionsText = new pText("Options", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
             spriteManager.Add(OptionsText);
+            cursorSprite = new CursorSprite();
+            cursorSprite.AddToSpriteManager(spriteManager);
         }
 
         public Options()
@@ -41,6 +43,7 @@ namespace osum.GameModes
         public override void Update()
         {
             base.Update();
+            cursorSprite.Update();
 
         }
 

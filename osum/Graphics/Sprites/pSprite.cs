@@ -456,7 +456,7 @@ namespace osum.Graphics.Sprites
                         fieldPosition = new Vector2(GameBase.WindowBaseSize.Width / 2 + Position.X, GameBase.WindowBaseSize.Height - Position.Y);
                         break;
                     case FieldTypes.StandardSnapRight:
-                        fieldPosition = new Vector2(GameBase.WindowBaseSize.Width - Position.X, Position.Y);
+                        fieldPosition = new Vector2(GameBase.WindowBaseSize.Width + Position.X, Position.Y);
                         break;
                     case FieldTypes.StandardSnapBottomLeft:
                         fieldPosition = new Vector2(Position.X, GameBase.WindowBaseSize.Height - Position.Y);
@@ -790,7 +790,13 @@ namespace osum.Graphics.Sprites
         ///   Native screen resolution aligned from the right-hand side of the screen, where an X position of 0 is translated to Standard(WindowWidth).
         /// </summary>
         NativeSnapRight,
+
+        /// <summary>
+        ///   Aligns from the top-left point of the screen, where a position of 0 is translated to Standard(0,0).
+        /// </summary>
+        StandardSnapTopLeft,
     }
+
 
     internal enum OriginTypes
     {

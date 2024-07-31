@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using OpenTK;
 using osum.Helpers;
+
 namespace osum
 {
     public static class InputManager
@@ -79,7 +80,7 @@ namespace osum
         private static void ReceiveDown(InputSource source, TrackingPoint point)
         {
             //if (PrimaryTrackingPoint == null)
-                PrimaryTrackingPoint = point;
+            PrimaryTrackingPoint = point;
 
             UpdatePointerPosition(point);
             TriggerOnDown(source, point);
@@ -100,9 +101,9 @@ namespace osum
                     }
                 }
             }
-			
+
             TriggerOnUp(source, point);
-			UpdatePointerPosition(point);
+            UpdatePointerPosition(point);
         }
 
         private static void ReceiveClick(InputSource source, TrackingPoint point)
@@ -113,9 +114,18 @@ namespace osum
 
         private static void ReceiveMove(InputSource source, TrackingPoint point)
         {
-			TriggerOnMove(source, point);
-			UpdatePointerPosition(point);
+            // Update the main pointer position directly based on the move event.
+            MainPointerPosition = point.WindowPosition;
+
+            // Clear and update tracking points list.
+            TrackingPoints.Clear();
+            foreach (InputSource s in RegisteredSources)
+                TrackingPoints.AddRange(s.trackingPoints);
+
+            // Trigger the OnMove event.
+            TriggerOnMove(source, point);
         }
+
 
         #endregion
 
@@ -133,8 +143,6 @@ namespace osum
         public static event InputHandler OnUp;
         private static void TriggerOnUp(InputSource source, TrackingPoint point)
         {
-            //tracking is no longer valid.
-            point.DecreaseValidity();
 
             if (OnUp != null)
                 OnUp(source, point);
@@ -156,7 +164,4 @@ namespace osum
 
         #endregion
     }
-
-
 }
-
