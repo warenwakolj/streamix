@@ -4,41 +4,49 @@ using osum.GameplayElements.Beatmaps;
 using OpenTK;
 using OpenTK.Graphics;
 using osum.Audio;
+using osum.Graphics.Skins;
+using osum.Helpers;
 
 namespace osum.GameModes.MainMenu
 {
     internal class MenuButton : pSpriteCollection
     {
         pSprite backingPlate;
+        pSprite backgroundTexture;
         pText text;
         OsuMode mode;
         Vector2 originalPosition;
+        string originalTexturePath;
 
-        public MenuButton(string buttonText, OsuMode mode)
+        public MenuButton(OsuMode mode, string texturePath)
         {
             this.mode = mode;
+            this.originalTexturePath = texturePath;
+
+            if (!string.IsNullOrEmpty(texturePath))
+            {
+                backgroundTexture = new pSprite(TextureManager.Load(texturePath), FieldTypes.Standard, OriginTypes.TopLeft,
+                                                 ClockTypes.Mode, Vector2.Zero, 1, true, Color4.White);
+                backgroundTexture.Scale.Y = 1;
+                backgroundTexture.Scale.X = 1;
+                backgroundTexture.DrawDepth = 0.9f;
+                SpriteCollection.Add(backgroundTexture);
+            }
 
             backingPlate = pSprite.FullscreenWhitePixel;
-            backingPlate.Alpha = 1;
-            backingPlate.AlwaysDraw = true;
-            backingPlate.Colour = Color4.OrangeRed;
+            backingPlate.Alpha = 0;
             backingPlate.Scale.Y = 89;
             backingPlate.Scale.X = 583;
-            backingPlate.DrawDepth = 0.8f;
             SpriteCollection.Add(backingPlate);
 
             backingPlate.OnClick += delegate {
                 AudioEngine.PlaySample(OsuSamples.MenuHit);
                 backingPlate.UnbindAllEvents();
-                backingPlate.Colour = Color4.LightSkyBlue;
+
                 Director.ChangeMode(this.mode);
             };
 
             backingPlate.HandleClickOnUp = true;
-
-            text = new pText(buttonText, 10, Vector2.Zero, new Vector2(100, 80), 1, true, Color4.White, false);
-            text.Offset = new Vector2(10, 0);
-            SpriteCollection.Add(text);
 
             backingPlate.OnHover += OnHover;
             backingPlate.OnHoverLost += OnHoverLost;
@@ -47,27 +55,39 @@ namespace osum.GameModes.MainMenu
         private void OnHover(object sender, EventArgs e)
         {
             MoveTo(originalPosition + new Vector2(30, 0));
+            ChangeTexture(true);
             AudioEngine.PlaySample(OsuSamples.MenuClick);
         }
 
         private void OnHoverLost(object sender, EventArgs e)
         {
-            MoveTo(originalPosition + new Vector2(-30, 0)); ;
+            MoveTo(originalPosition + new Vector2(-30, 0));
+            ChangeTexture(false);
         }
 
+        private void ChangeTexture(bool isHovered)
+        {
+            if (backgroundTexture != null)
+            {
+                string newTexturePath = isHovered ? $"{originalTexturePath}-over" : originalTexturePath;
+                backgroundTexture.Texture = TextureManager.Load(newTexturePath);
+            }
+        }
 
         internal void MoveTo(Vector2 location)
         {
             originalPosition = location;
+            if (backgroundTexture != null)
+                backgroundTexture.MoveTo(location, 150);
             backingPlate.MoveTo(location, 150);
-            text.MoveTo(location + new Vector2(10, 0), 150);
         }
 
         internal void SetPosition(Vector2 location)
         {
             originalPosition = location;
+            if (backgroundTexture != null)
+                backgroundTexture.Position = location;
             backingPlate.Position = location;
-            text.Position = location + new Vector2(10, 0);
         }
     }
 }

@@ -38,17 +38,17 @@ namespace osum
                                  ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
             spriteManager.Add(menuBackground);
 
-            MenuButton ButtonPlay = new MenuButton("Play", OsuMode.SongSelect);
+            MenuButton ButtonPlay = new MenuButton(OsuMode.SongSelect, @"menu-button-play");
             spriteManager.Add(ButtonPlay);
-            ButtonPlay.SetPosition(new Vector2(200, 120));
+            ButtonPlay.SetPosition(new Vector2(240, 120));
 
-            MenuButton ButtonOptions = new MenuButton("Options", OsuMode.Options);
+            MenuButton ButtonOptions = new MenuButton(OsuMode.Options, @"menu-button-options");
             spriteManager.Add(ButtonOptions);
-            ButtonOptions.SetPosition(new Vector2(200, 180));
+            ButtonOptions.SetPosition(new Vector2(240, 180));
 
-            MenuButton ButtonQuit = new MenuButton("Quit", OsuMode.Play);
+            MenuButton ButtonQuit = new MenuButton(OsuMode.Exit, @"menu-button-exit");
             spriteManager.Add(ButtonQuit);
-            ButtonQuit.SetPosition(new Vector2(200, 240));
+            ButtonQuit.SetPosition(new Vector2(240, 240));
 
             osuLogo = new pSprite(TextureManager.Load(@"menu-osu"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(-120, 0), 1.0f, true, Color4.White);
             spriteManager.Add(osuLogo);
@@ -56,6 +56,7 @@ namespace osum
             cursorSprite = new CursorSprite();
             cursorSprite.AddToSpriteManager(spriteManager);
         }
+
 
         private void InitializeBeatmaps()
         {
@@ -124,7 +125,6 @@ namespace osum
         }
 
         private pSprite menuBackground;
-
 
         public override void Update()
         {
