@@ -96,7 +96,7 @@ namespace OpenTK.Audio
         #endregion
 
         #endregion
-
+         
         #region --- Public Members ---
 
         #region public virtual bool Supports(Stream s)

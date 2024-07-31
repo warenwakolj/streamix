@@ -13,6 +13,7 @@ using osum.GameModes.MainMenu;
 using osum.GameModes;
 using osum.Graphics.Skins;
 using System.Drawing;
+using osum.GameplayElements;
 
 namespace osum
 {
@@ -57,7 +58,6 @@ namespace osum
             cursorSprite.AddToSpriteManager(spriteManager);
         }
 
-
         private void InitializeBeatmaps()
         {
             availableMaps = new List<Beatmap>();
@@ -72,30 +72,11 @@ namespace osum
                         {
                             BeatmapFilename = Path.GetFileName(file)
                         };
-                        string audioFile = LocateAudioFile(directory);
-                        if (!string.IsNullOrEmpty(audioFile))
-                        {
-                            beatmap.AudioFilename = Path.GetFileName(audioFile);
-                        }
 
                         availableMaps.Add(beatmap);
                     }
                 }
             }
-        }
-
-        private string LocateAudioFile(string directory)
-        {
-            string[] audioExtensions = { ".mp3", ".wav", ".ogg" };
-            foreach (string extension in audioExtensions)
-            {
-                string[] files = Directory.GetFiles(directory, "*" + extension);
-                if (files.Length > 0)
-                {
-                    return files[0];
-                }
-            }
-            return null;
         }
 
         private void PlayRandomBeatmap()
@@ -104,6 +85,9 @@ namespace osum
 
             Random random = new Random();
             Beatmap randomBeatmap = availableMaps[random.Next(availableMaps.Count)];
+            HitObjectManager hitObjectManager = new HitObjectManager(randomBeatmap);
+            hitObjectManager.LoadFile();
+
             string audioFilename = randomBeatmap.AudioFilename;
 
             if (!string.IsNullOrEmpty(audioFilename))
@@ -115,21 +99,20 @@ namespace osum
                     AudioEngine.Music.Load(audioData);
                     AudioEngine.Music.Play();
 
-                    // Update the InfoText with the beatmap filename
                     InfoText.Text = $"Playing from: {randomBeatmap.BeatmapFilename}";
 
-                    // Store the currently playing beatmap
                     currentlyPlayingBeatmap = randomBeatmap;
                 }
             }
         }
+
+
 
         private pSprite menuBackground;
 
         public override void Update()
         {
             base.Update();
-
             cursorSprite.Update();
         }
 

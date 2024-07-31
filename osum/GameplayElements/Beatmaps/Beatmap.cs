@@ -11,7 +11,6 @@ namespace osum.GameplayElements.Beatmaps
     public partial class Beatmap
     {
         public string ContainerFilename;
-
         public byte DifficultyOverall;
         public byte DifficultyCircleSize;
         public byte DifficultyHpDrainRate;
