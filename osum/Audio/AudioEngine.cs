@@ -44,7 +44,7 @@ namespace osum.Audio
 
             string filename = null;
 
-            string setName = "soft";
+            string setName = "normal";
 
             switch (sample)
             {

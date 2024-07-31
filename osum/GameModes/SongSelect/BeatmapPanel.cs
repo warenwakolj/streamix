@@ -66,17 +66,18 @@ namespace osum.GameModes.SongSelect
             text.Offset = new Vector2(10, 0);
             SpriteCollection.Add(text);
 
-
             //artist // mapper
             text = new pText(m.Groups[3].Value + " // " + m.Groups[1].Value, 6, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
-            text.Offset = new Vector2(11, 15);
+            text.Offset = new Vector2(12, 15); 
             SpriteCollection.Add(text);
+
 
             //difficulty
             text = new pText(m.Groups[4].Value, 8, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
             text.TextBold = true;
-            text.Offset = new Vector2(10, 84);
+            text.Offset = new Vector2(11, 25);
             SpriteCollection.Add(text);
+
         }
 
         private void Select()

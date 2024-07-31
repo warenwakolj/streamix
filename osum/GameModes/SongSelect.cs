@@ -27,6 +27,7 @@ namespace osum
         static List<Beatmap> availableMaps;
         internal static pText MetadataText;
         
+
         internal override void Initialize()
         {
             InitializeBeatmaps();
@@ -55,19 +56,22 @@ namespace osum
 
         }
 
-        void InputManager_OnMove(InputSource source, TrackingPoint trackingPoint)
-        {
-            if (InputManager.IsPressed)
-                offset += trackingPoint.WindowDelta.Y;	
-        }
-
+        
         public static void UpdateMetadataText(string text)
         {
             if (MetadataText != null)
             {
                 MetadataText.Text = text;
             }
-        }   
+        }
+
+        void InputManager_OnMove(InputSource source, TrackingPoint trackingPoint)
+        {
+            if (InputManager.IsPressed)
+                offset += trackingPoint.WindowDelta.Y;	
+        }
+
+
 
         public override void Dispose()
 		{
