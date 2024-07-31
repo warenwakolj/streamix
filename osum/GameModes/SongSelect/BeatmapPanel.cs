@@ -10,13 +10,20 @@ namespace osum.GameModes.SongSelect
 {
     internal class BeatmapPanel : pSpriteCollection
     {
-        Beatmap beatmap;
+        public Beatmap Beatmap { get; private set; }
 
         pSprite backingPlate;
         pText text;
+        bool isHovered = false;
+        bool isSelected = false;
+
+        private static BeatmapPanel currentlySelectedPanel;
 
         internal BeatmapPanel(Beatmap beatmap)
         {
+
+            Beatmap = beatmap;
+
             backingPlate = pSprite.FullscreenWhitePixel;
             backingPlate.Alpha = 1;
             backingPlate.AlwaysDraw = true;
@@ -25,22 +32,29 @@ namespace osum.GameModes.SongSelect
             backingPlate.DrawDepth = 0.8f;
             SpriteCollection.Add(backingPlate);
 
-            this.beatmap = beatmap;
+      
 
             backingPlate.OnClick += delegate {
+                if (isSelected)
+                {
+                    Player.SetBeatmap(beatmap);
+                    Director.ChangeMode(OsuMode.Play);
+                }
+                else
+                {
+                    if (currentlySelectedPanel != null)
+                    {
+                        currentlySelectedPanel.Deselect();
+                    }
 
-                backingPlate.UnbindAllEvents();
-
-                backingPlate.Colour = Color4.LightSkyBlue;
-
-                Player.SetBeatmap(beatmap);
-                Director.ChangeMode(OsuMode.Play);
+                    Select();
+                }
             };
+
+          
 
             backingPlate.HandleClickOnUp = true;
 
-            backingPlate.OnHover += delegate { backingPlate.Colour = Color4.YellowGreen; };
-            backingPlate.OnHoverLost += delegate { backingPlate.Colour = Color4.OrangeRed; };
 
             string filename = Path.GetFileNameWithoutExtension(beatmap.BeatmapFilename);
 
@@ -65,6 +79,21 @@ namespace osum.GameModes.SongSelect
             SpriteCollection.Add(text);
         }
 
+        private void Select()
+        {
+            isSelected = true;
+            currentlySelectedPanel = this;
+
+            backingPlate.Colour = Color4.Orange;
+
+        }
+
+        private void Deselect()
+        {
+            isSelected = false;
+
+            backingPlate.Colour = Color4.OrangeRed;
+        }
         internal void MoveTo(Vector2 location)
         {
             SpriteCollection.ForEach(s => s.MoveTo(location, 150));

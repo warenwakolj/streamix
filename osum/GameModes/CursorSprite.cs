@@ -13,7 +13,7 @@ namespace osum
 
         public CursorSprite()
         {
-            cursor = new pSprite(TextureManager.Load("cursor"), FieldTypes.StandardSnapTopLeft, OriginTypes.TopLeft, ClockTypes.Mode, Vector2.Zero, 9, true, Color4.White);
+            cursor = new pSprite(TextureManager.Load("cursor"), FieldTypes.StandardSnapTopLeft, OriginTypes.TopLeft, ClockTypes.Mode, Vector2.Zero, 19, true, Color4.White);
         }
 
         internal void AddToSpriteManager(SpriteManager spriteManager)
@@ -26,5 +26,11 @@ namespace osum
             Vector2 mousePosition = InputManager.MainPointerPosition;
             cursor.Position = new Vector2(mousePosition.X - cursor.Width / 4, mousePosition.Y - cursor.Height / 4);
         }
+
+        public void Draw()
+        {
+            cursor.Draw();
+        }
+
     }
 }

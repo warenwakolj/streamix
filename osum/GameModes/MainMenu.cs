@@ -19,18 +19,23 @@ namespace osum
     class MainMenu : GameMode
     {
         private pSprite osuLogo;
-        private CursorSprite cursorSprite; 
+        private CursorSprite cursorSprite;
         private List<Beatmap> availableMaps;
         private const string BEATMAP_DIRECTORY = "Beatmaps";
+        internal static pText InfoText;
+        private Beatmap currentlyPlayingBeatmap;
 
         internal override void Initialize()
         {
             InitializeBeatmaps();
 
+            InfoText = new pText("Loading...", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
+            spriteManager.Add(InfoText);
+
             PlayRandomBeatmap();
 
             menuBackground = new pSprite(TextureManager.Load(@"menu-background"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                            ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
+                                 ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
             spriteManager.Add(menuBackground);
 
             MenuButton ButtonPlay = new MenuButton("Play", OsuMode.SongSelect);
@@ -108,11 +113,18 @@ namespace osum
                 {
                     AudioEngine.Music.Load(audioData);
                     AudioEngine.Music.Play();
+
+                    // Update the InfoText with the beatmap filename
+                    InfoText.Text = $"Playing from: {randomBeatmap.BeatmapFilename}";
+
+                    // Store the currently playing beatmap
+                    currentlyPlayingBeatmap = randomBeatmap;
                 }
             }
         }
 
         private pSprite menuBackground;
+
 
         public override void Update()
         {
@@ -123,8 +135,12 @@ namespace osum
 
         public override void Draw()
         {
-
             base.Draw();
+        }
+
+        public Beatmap GetCurrentlyPlayingBeatmap()
+        {
+            return currentlyPlayingBeatmap;
         }
     }
 }

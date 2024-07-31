@@ -128,19 +128,24 @@ namespace osum.GameplayElements.Scoring
             {
                 if (InitialIncrease)
                 {
-                    // if (InitialIncreaseStartTime < AudioEngine.Time && (Player.Recovering || AudioEngine.AudioState == AudioStates.Playing))
+                    DisplayHp = Math.Min(HP_BAR_MAXIMUM, DisplayHp + InitialIncreaseRate * GameBase.ElapsedMilliseconds);
+                    if (s_kiIcon.Transformations.Count == 0)
                     {
-                        DisplayHp = Math.Min(HP_BAR_MAXIMUM, DisplayHp + InitialIncreaseRate * GameBase.ElapsedMilliseconds);
-                        if (s_kiIcon.Transformations.Count == 0)
-                        {
-                            s_kiIcon.Transform(
-                                new Transformation(TransformationType.Scale, 1.2F, 0.8F, Clock.Time,
-                                                   Clock.Time + 150));
-                        }
+                        s_kiIcon.Transform(
+                            new Transformation(TransformationType.Scale, 1.2F, 0.8F, Clock.Time,
+                                               Clock.Time + 150));
+                    }
+
+                    // Check if the initial increase phase is done
+                    if (DisplayHp >= HP_BAR_MAXIMUM)
+                    {
+                        InitialIncrease = false;
                     }
                 }
                 else
+                {
                     DisplayHp = Math.Min(HP_BAR_MAXIMUM, DisplayHp + Math.Abs(CurrentHp - DisplayHp) / 4 * GameBase.ElapsedMilliseconds * 0.03);
+                }
             }
             else if (DisplayHp > CurrentHp)
             {
@@ -153,12 +158,13 @@ namespace osum.GameplayElements.Scoring
             // Sync Ki icon position with the end of the scorebar fill.
             s_kiIcon.Position = new Vector2(CurrentXPosition, s_kiIcon.Position.Y);
 
-            // Check if HP is zero and trigger fail screen
-            if (CurrentHp == 0)
+            // Check if HP is zero and trigger fail screen only if InitialIncrease is false
+            if (CurrentHp == 0 && !InitialIncrease)
             {
                 Director.ChangeMode(OsuMode.Failed, new FadeTransition());
             }
         }
+
 
 
         internal virtual void Draw()
