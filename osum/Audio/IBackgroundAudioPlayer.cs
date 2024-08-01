@@ -11,10 +11,7 @@ namespace osum
         /// Gets the current volume.
         /// </summary>
         /// <value>The current volume.</value>
-        float CurrentVolume
-        {
-            get;
-        }
+        float CurrentVolume { get; }
 
         /// <summary>
         /// Loads an audio track.
@@ -36,6 +33,12 @@ namespace osum
         /// Pause the playing audio.
         /// </summary>
         bool Pause();
-	}
-}
 
+        /// <summary>
+        /// Sets the current playback time.
+        /// </summary>
+        /// <param name="seconds">The playback position in seconds.</param>
+        /// <returns></returns>
+        bool SetCurrentTime(double seconds);
+    }
+}

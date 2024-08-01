@@ -12,42 +12,26 @@ namespace osum.Audio
     {
         private GCHandle audioHandle;
         private static int audioStream;
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BackgroundAudioPlayerDesktop"/> class.
-        /// </summary>
+
         public BackgroundAudioPlayerDesktop()
         {
             BassNet.Registration("poo@poo.com", "2X25242411252422");
-
             Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, (IntPtr)0, null);
-
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 10);
         }
 
-        /// <summary>
-        /// Gets the current volume.
-        /// </summary>
-        /// <value>The current volume.</value>
         public float CurrentVolume
         {
             get { return 0; }
         }
 
-        /// <summary>
-        /// Plays the loaded audio.
-        /// </summary>
-        /// <returns></returns>
         public bool Play()
         {
             Bass.BASS_ChannelPlay(audioStream, true);
             return true;
         }
 
-        /// <summary>
-        /// Stops the playing audio (and unloads it).
-        /// </summary>
-        /// <returns></returns>
         public bool Stop()
         {
             Bass.BASS_ChannelStop(audioStream);
@@ -55,12 +39,8 @@ namespace osum.Audio
             return true;
         }
 
-        /// <summary>
-        /// Updates this instance. Called every frame when loaded as a component.
-        /// </summary>
         public void Update()
         {
-
         }
 
         internal void FreeMusic()
@@ -80,19 +60,17 @@ namespace osum.Audio
         {
             FreeMusic();
             audioHandle = GCHandle.Alloc(audio, GCHandleType.Pinned);
-
             audioStream = Bass.BASS_StreamCreateFile(audioHandle.AddrOfPinnedObject(), 0, audio.Length, BASSFlag.BASS_STREAM_PRESCAN);
-
             return true;
         }
 
         public double CurrentTime
         {
-            get {
+            get
+            {
                 if (audioStream == 0) return 0;
-
                 long audioTimeRaw = Bass.BASS_ChannelGetPosition(audioStream);
-                return Bass.BASS_ChannelBytes2Seconds(audioStream, audioTimeRaw); 
+                return Bass.BASS_ChannelBytes2Seconds(audioStream, audioTimeRaw);
             }
         }
 
@@ -100,6 +78,13 @@ namespace osum.Audio
         {
             Bass.BASS_ChannelPause(audioStream);
             return true;
+        }
+
+        public bool SetCurrentTime(double seconds)
+        {
+            if (audioStream == 0) return false;
+            long position = Bass.BASS_ChannelSeconds2Bytes(audioStream, seconds);
+            return Bass.BASS_ChannelSetPosition(audioStream, position);
         }
     }
 }

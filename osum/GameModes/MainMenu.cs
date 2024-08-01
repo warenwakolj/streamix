@@ -25,6 +25,7 @@ namespace osum
         private const string BEATMAP_DIRECTORY = "Beatmaps";
         internal static pText InfoText;
         private Beatmap currentlyPlayingBeatmap;
+
         public static Beatmap SelectedBeatmap { get; private set; }
 
         private int osuLogoClickCount = 0;
@@ -124,17 +125,34 @@ namespace osum
                 byte[] audioData = File.ReadAllBytes(audioFilePath);
                 if (audioData != null)
                 {
+
+                    string beatmapFilePath = Path.Combine(randomBeatmap.ContainerFilename, randomBeatmap.BeatmapFilename);
+                    string[] beatmapLines = File.ReadAllLines(beatmapFilePath);
+                    int previewTime = 0;
+
+                    foreach (string line in beatmapLines)
+                    {
+                        if (line.StartsWith("PreviewTime"))
+                        {
+                            previewTime = int.Parse(line.Split(':')[1].Trim());
+                            break;
+                        }
+                    }
+
                     AudioEngine.Music.Load(audioData);
                     AudioEngine.Music.Play();
 
-                    // Extract artist and song name from the beatmap filename
+                    if (previewTime > 0)
+                    {
+                        AudioEngine.Music.SetCurrentTime(previewTime / 1000.0);
+                    }
+
                     string filename = Path.GetFileNameWithoutExtension(randomBeatmap.BeatmapFilename);
                     Regex regex = new Regex(@"(.*) - (.*) \((.*)\) \[(.*)\]");
                     Match match = regex.Match(filename);
                     string artist = match.Groups[1].Value;
                     string songName = match.Groups[2].Value;
 
-                    // Update InfoText with the formatted string and position it to the right
                     InfoText.Text = $"{artist} - {songName}";
 
                     currentlyPlayingBeatmap = randomBeatmap;
@@ -142,6 +160,9 @@ namespace osum
                 }
             }
         }
+
+
+
 
         private pSprite menuBackground;
 
