@@ -106,7 +106,6 @@
     <Compile Include="Helpers\pMathHelper.cs" />
     <Compile Include="Input\KeyboardHandler.cs" />
     <Compile Include="Input\Sources\InputSource.cs" />
-    <Compile Include="Input\Sources\InputSourceKeyboard.cs" />
     <Compile Include="Input\Sources\InputSourceMouse.cs" />
     <Compile Include="Input\TrackingPoint.cs" />
     <Compile Include="Main.cs" />

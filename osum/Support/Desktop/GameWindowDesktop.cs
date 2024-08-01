@@ -86,8 +86,6 @@ namespace osum
 
             GameBase.Instance.Initialize();
 
-            var keyboardInputSource = new InputSourceKeyboard(this.Keyboard);
-            InputManager.AddSource(keyboardInputSource);
 
             KeyPress += GameWindowDesktop_KeyPress;
         }

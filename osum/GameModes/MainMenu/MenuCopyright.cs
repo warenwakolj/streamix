@@ -44,13 +44,13 @@ namespace osum.GameModes.MainMenu
         private void OnHover(object sender, EventArgs e)
         {
             backgroundTexture.Colour = Color4.Yellow;
-            backgroundTexture.ScaleTo(1.3f, 200, EasingTypes.In);
+            backgroundTexture.ScaleTo(1.4f, 500, EasingTypes.In);
         }
 
         private void OnHoverLost(object sender, EventArgs e)
         {
             backgroundTexture.Colour = Color4.White;
-            backgroundTexture.ScaleTo(1f, 100, EasingTypes.In);
+            backgroundTexture.ScaleTo(1f, 400, EasingTypes.In);
         }
 
         internal void MoveTo(Vector2 location)

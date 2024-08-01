@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:gamemodes\\mainmenu\\menucopyright.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\support\\desktop\\gamewindowdesktop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:support\\desktop\\gamewindowdesktop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|c:\\users\\user\\documents\\github\\osu-streamix\\osum\\input\\keyboardhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:input\\keyboardhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\gamemodes\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:gamemodes\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|c:\\users\\user\\documents\\github\\osu-streamix\\osum\\input\\sources\\inputsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:input\\sources\\inputsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\support\\desktop\\gamewindowdesktop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|solutionrelative:support\\desktop\\gamewindowdesktop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2698AF2E-F64B-4D61-99F3-52EF2D215F2F}|osu!m-desktop.csproj|C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\support\\desktop\\gamebasedesktop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -181,11 +185,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "MenuButton.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\MainMenu\\MenuButton.cs",
               "RelativeDocumentMoniker": "GameModes\\MainMenu\\MenuButton.cs",
@@ -202,20 +206,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KeyboardHandler.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Input\\KeyboardHandler.cs",
+              "RelativeDocumentMoniker": "Input\\KeyboardHandler.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Input\\KeyboardHandler.cs",
+              "RelativeToolTip": "Input\\KeyboardHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T19:12:00.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MenuCopyright.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\MainMenu\\MenuCopyright.cs",
               "RelativeDocumentMoniker": "GameModes\\MainMenu\\MenuCopyright.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\MainMenu\\MenuCopyright.cs",
               "RelativeToolTip": "GameModes\\MainMenu\\MenuCopyright.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAAABgAAAAyAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAUwDQAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-01T19:03:52.43Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\MainMenu.cs",
               "RelativeDocumentMoniker": "GameModes\\MainMenu.cs",
@@ -228,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Input\\InputManager.cs",
               "RelativeDocumentMoniker": "Input\\InputManager.cs",
@@ -241,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\Play\\Player.cs",
               "RelativeDocumentMoniker": "GameModes\\Play\\Player.cs",
@@ -254,20 +271,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "GameWindowDesktop.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Support\\Desktop\\GameWindowDesktop.cs",
               "RelativeDocumentMoniker": "Support\\Desktop\\GameWindowDesktop.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Support\\Desktop\\GameWindowDesktop.cs",
               "RelativeToolTip": "Support\\Desktop\\GameWindowDesktop.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAcwEwAAAAAAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAewFcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-01T10:04:03.972Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "pText.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\Sprites\\pText.cs",
               "RelativeDocumentMoniker": "Graphics\\Sprites\\pText.cs",
@@ -279,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "GameBaseDesktop.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Support\\Desktop\\GameBaseDesktop.cs",
               "RelativeDocumentMoniker": "Support\\Desktop\\GameBaseDesktop.cs",
@@ -292,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "GameBase.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameBase.cs",
               "RelativeDocumentMoniker": "GameBase.cs",
@@ -305,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "InputSourceMouse.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Input\\Sources\\InputSourceMouse.cs",
               "RelativeDocumentMoniker": "Input\\Sources\\InputSourceMouse.cs",
@@ -318,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "pSprite.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\Sprites\\pSprite.cs",
               "RelativeDocumentMoniker": "Graphics\\Sprites\\pSprite.cs",
@@ -331,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "InputSource.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Input\\Sources\\InputSource.cs",
               "RelativeDocumentMoniker": "Input\\Sources\\InputSource.cs",
@@ -344,7 +361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Options.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\Options.cs",
               "RelativeDocumentMoniker": "GameModes\\Options.cs",
@@ -357,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UserCard.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\UserInterface\\UserCard.cs",
               "RelativeDocumentMoniker": "Graphics\\UserInterface\\UserCard.cs",
@@ -369,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CheckBox.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\UserInterface\\CheckBox.cs",
               "RelativeDocumentMoniker": "Graphics\\UserInterface\\CheckBox.cs",
@@ -381,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "BeatmapPanel.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\SongSelect\\BeatmapPanel.cs",
               "RelativeDocumentMoniker": "GameModes\\SongSelect\\BeatmapPanel.cs",
@@ -393,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "IBackgroundAudioPlayer.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Audio\\IBackgroundAudioPlayer.cs",
               "RelativeDocumentMoniker": "Audio\\IBackgroundAudioPlayer.cs",
@@ -405,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AudioEngine.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Audio\\AudioEngine.cs",
               "RelativeDocumentMoniker": "Audio\\AudioEngine.cs",
@@ -417,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "BackButton.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\UserInterface\\BackButton.cs",
               "RelativeDocumentMoniker": "Graphics\\UserInterface\\BackButton.cs",
@@ -429,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "BackgroundAudioPlayerDesktop.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Audio\\BackgroundAudioPlayerDesktop.cs",
               "RelativeDocumentMoniker": "Audio\\BackgroundAudioPlayerDesktop.cs",
@@ -441,7 +458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "HitObjectManager_Load.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\HitObjectManager_Load.cs",
               "RelativeDocumentMoniker": "GameplayElements\\HitObjectManager_Load.cs",
@@ -453,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Failed.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\Failed.cs",
               "RelativeDocumentMoniker": "GameModes\\Failed.cs",
@@ -465,7 +482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Director.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Director.cs",
               "RelativeDocumentMoniker": "Director.cs",
@@ -477,7 +494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "SongSelect.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\SongSelect.cs",
               "RelativeDocumentMoniker": "GameModes\\SongSelect.cs",
@@ -489,7 +506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "pSpriteCollection.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\Sprites\\pSpriteCollection.cs",
               "RelativeDocumentMoniker": "Graphics\\Sprites\\pSpriteCollection.cs",
@@ -501,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Slider.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\HitObjects\\Osu\\Slider.cs",
               "RelativeDocumentMoniker": "GameplayElements\\HitObjects\\Osu\\Slider.cs",
@@ -513,7 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "Spinner.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\HitObjects\\Osu\\Spinner.cs",
               "RelativeDocumentMoniker": "GameplayElements\\HitObjects\\Osu\\Spinner.cs",
@@ -525,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "SoundEffectPlayer.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Audio\\SoundEffectPlayer.cs",
               "RelativeDocumentMoniker": "Audio\\SoundEffectPlayer.cs",
@@ -537,7 +554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "ISoundEffectPlayer.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Audio\\ISoundEffectPlayer.cs",
               "RelativeDocumentMoniker": "Audio\\ISoundEffectPlayer.cs",
@@ -549,7 +566,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Transition.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Support\\Transition.cs",
               "RelativeDocumentMoniker": "Support\\Transition.cs",
@@ -561,7 +578,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "ITimeSource.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Support\\ITimeSource.cs",
               "RelativeDocumentMoniker": "Support\\ITimeSource.cs",
@@ -573,7 +590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Main.cs",
               "RelativeDocumentMoniker": "Main.cs",
@@ -585,7 +602,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "Constants.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Constants.cs",
               "RelativeDocumentMoniker": "Constants.cs",
@@ -597,7 +614,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "BASSAttribute.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\BassNet\\Bass.Net\\Un4seen\\Bass\\BASSAttribute.cs",
               "RelativeDocumentMoniker": "..\\BassNet\\Bass.Net\\Un4seen\\Bass\\BASSAttribute.cs",
@@ -609,7 +626,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "pTexture.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\pTexture.cs",
               "RelativeDocumentMoniker": "Graphics\\pTexture.cs",
@@ -621,7 +638,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "SliderTrackRendererDesktop.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\Renderers\\SliderTrackRendererDesktop.cs",
               "RelativeDocumentMoniker": "Graphics\\Renderers\\SliderTrackRendererDesktop.cs",
@@ -633,7 +650,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "SpriteManager.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\Sprites\\SpriteManager.cs",
               "RelativeDocumentMoniker": "Graphics\\Sprites\\SpriteManager.cs",
@@ -645,7 +662,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "HitObjectManager.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\HitObjectManager.cs",
               "RelativeDocumentMoniker": "GameplayElements\\HitObjectManager.cs",
@@ -657,7 +674,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "ControlPoint.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\Beatmaps\\ControlPoint.cs",
               "RelativeDocumentMoniker": "GameplayElements\\Beatmaps\\ControlPoint.cs",
@@ -669,7 +686,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "Beatmap.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\Beatmaps\\Beatmap.cs",
               "RelativeDocumentMoniker": "GameplayElements\\Beatmaps\\Beatmap.cs",
@@ -681,7 +698,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "Beatmap_Timing.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameplayElements\\Beatmaps\\Beatmap_Timing.cs",
               "RelativeDocumentMoniker": "GameplayElements\\Beatmaps\\Beatmap_Timing.cs",
@@ -693,7 +710,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "TextureManager.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\Graphics\\TextureManager.cs",
               "RelativeDocumentMoniker": "Graphics\\TextureManager.cs",
@@ -705,7 +722,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Ranking.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\osu-streamix\\osum\\GameModes\\Ranking.cs",
               "RelativeDocumentMoniker": "GameModes\\Ranking.cs",
