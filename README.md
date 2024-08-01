@@ -1,12 +1,13 @@
 # osu!streamix
  osu!stream 2011 beta client, modified to look like stable
 ## IMPORTANT TODO:
-- add android support
 - add pause screen
-- fix the touch detection of sprites (theyre really off)
+- fix the scaling
 - add keyboard support
-- fix the circlesize and ui size
-- make song selection system closer to stable
+- fix the circlesize, overall difficulty and ar
+- fix the circle hitbox, for some reason the whole cursor can hit it and not the exact center
+- add android support
+  more will be added here
 ## Less important to do
 - private server support
 - skinning support
