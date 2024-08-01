@@ -7,7 +7,8 @@
 - fix the circlesize, overall difficulty and ar
 - fix the circle hitbox, for some reason the whole cursor can hit it and not the exact center
 - add android support
-  more will be added here
+- fix ui and gameplay scaling
+- more will be added here
 ## Less important to do
 - private server support
 - skinning support
