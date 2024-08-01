@@ -13,7 +13,7 @@ namespace osum
         private bool isFullscreen;
         private bool isVSyncEnabled;
 
-        public GameWindowDesktop() : base(960, 640, GraphicsMode.Default, "osu!")
+        public GameWindowDesktop() : base(1024, 768, GraphicsMode.Default, "osu!")
         {
             VSync = VSyncMode.Off;
             isFullscreen = false; 

@@ -13,7 +13,7 @@ public static class BackButton
     internal static pSprite CreateBackButton(OsuMode targetMode)
     {
         pSprite backButton = new pSprite(TextureManager.Load("menu-back"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
-                                         ClockTypes.Game, Vector2.Zero, 1, true, new Color4(1, 1, 1, 0.4f));
+                                         ClockTypes.Game, Vector2.Zero, 5f, true, new Color4(1, 1, 1, 1f));
 
         backButton.OnClick += delegate {
             AudioEngine.PlaySample(OsuSamples.MenuBack);

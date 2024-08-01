@@ -10,7 +10,7 @@ using osum.GameplayElements.Beatmaps;
 using System.Collections.Generic;
 using osum.Graphics.Sprites;
 using OpenTK.Graphics;
-using osum.GameModes.SongSelect;
+using osum.GameModes;
 using osum.Audio;
 
 namespace osum
@@ -42,9 +42,9 @@ namespace osum
             SongSelectTop.Scale = new Vector2(1f, 1f);
 
             InputManager.OnMove += InputManager_OnMove;
-            SongSelectBottom = new pSprite(TextureManager.Load("songselect-bottom"), FieldTypes.Standard, OriginTypes.BottomLeft,
+            SongSelectBottom = new pSprite(TextureManager.Load("songselect-bottom"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
                          ClockTypes.Game, Vector2.Zero, 2, true, new Color4(1, 1, 1, 1f));
-            SongSelectBottom.Scale = new Vector2(1f, 1f);
+            SongSelectBottom.Scale = new Vector2(10f, 1f);
 
 
             pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
@@ -52,7 +52,7 @@ namespace osum
             spriteManager.Add(SongSelectTop);
             spriteManager.Add(SongSelectBottom);
 
-            MetadataText = new pText("Metadata", 10, Vector2.Zero, new Vector2(0, 0), 3, true, Color4.White, false);
+            MetadataText = new pText("Artist - title (mapped by name)", 10, Vector2.Zero, new Vector2(0, 0), 3, true, Color4.White, false);
             spriteManager.Add(MetadataText);
 
             cursorSprite = new CursorSprite();

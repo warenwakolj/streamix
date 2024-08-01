@@ -13,6 +13,7 @@ using System.IO;
 using System;
 using osum.GameModes.MainMenu;
 using osum.Support;
+using System.Text.RegularExpressions;
 
 namespace osum
 {
@@ -41,7 +42,7 @@ namespace osum
                                  ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
             spriteManager.Add(menuBackground);
 
-            osuLogo = new pSprite(TextureManager.Load(@"menu-osu"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(0, 0), 0.95f, true, Color4.White);
+            osuLogo = new pSprite(TextureManager.Load(@"menu-osu"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(0, -20), 1f, true, Color4.White);
             spriteManager.Add(osuLogo);
 
             cursorSprite = new CursorSprite();
@@ -55,21 +56,21 @@ namespace osum
 
                     osuLogoClickCount++;
                     AudioEngine.PlaySample(OsuSamples.MenuHit);
-                    MoveTo(new Vector2(-120, 0));
+                    MoveTo(new Vector2(-120, -20));
 
                     MenuButton ButtonPlay = new MenuButton(OsuMode.SongSelect, @"menu-button-play");
                     spriteManager.Add(ButtonPlay);
-                    ButtonPlay.SetPosition(new Vector2(240, 120));
+                    ButtonPlay.SetPosition(new Vector2(220, 120));
 
                     MenuButton ButtonOptions = new MenuButton(OsuMode.Options, @"menu-button-options");
                     spriteManager.Add(ButtonOptions);
-                    ButtonOptions.SetPosition(new Vector2(240, 180));
+                    ButtonOptions.SetPosition(new Vector2(220, 180));
 
                     MenuButton ButtonQuit = new MenuButton(OsuMode.Exit, @"menu-button-exit");
                     spriteManager.Add(ButtonQuit);
-                    ButtonQuit.SetPosition(new Vector2(240, 240));
+                    ButtonQuit.SetPosition(new Vector2(220, 240));
                 }
-          
+
             };
         }
 
@@ -126,7 +127,15 @@ namespace osum
                     AudioEngine.Music.Load(audioData);
                     AudioEngine.Music.Play();
 
-                    InfoText.Text = $"Playing from: {randomBeatmap.BeatmapFilename}";
+                    // Extract artist and song name from the beatmap filename
+                    string filename = Path.GetFileNameWithoutExtension(randomBeatmap.BeatmapFilename);
+                    Regex regex = new Regex(@"(.*) - (.*) \((.*)\) \[(.*)\]");
+                    Match match = regex.Match(filename);
+                    string artist = match.Groups[1].Value;
+                    string songName = match.Groups[2].Value;
+
+                    // Update InfoText with the formatted string and position it to the right
+                    InfoText.Text = $"{artist} - {songName}";
 
                     currentlyPlayingBeatmap = randomBeatmap;
                     SelectedBeatmap = randomBeatmap;
@@ -154,8 +163,8 @@ namespace osum
             {
                 if (newBeat % 4 == 0)
                 {
-                    osuLogo.ScaleScalar *= 0.95f;
-                    osuLogo.ScaleTo(0.925f, 500, EasingTypes.In);
+                    osuLogo.ScaleScalar *= 0.975f;
+                    osuLogo.ScaleTo(1, 500, EasingTypes.In);
                 }
 
                 lastBgmBeat = newBeat;

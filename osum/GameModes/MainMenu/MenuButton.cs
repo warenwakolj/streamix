@@ -30,7 +30,7 @@ namespace osum.GameModes.MainMenu
                 backgroundTexture.Scale.Y = 1;
                 backgroundTexture.Scale.X = 1;
                 backgroundTexture.DrawDepth = 0.9f;
-                backgroundTexture.Alpha = 0;  // Initial alpha value
+                backgroundTexture.Alpha = 0; 
                 SpriteCollection.Add(backgroundTexture);
 
 
@@ -58,9 +58,11 @@ namespace osum.GameModes.MainMenu
 
         private void OnHover(object sender, EventArgs e)
         {
-            MoveTo(originalPosition + new Vector2(30, 0));
-            ChangeTexture(true);
+            MoveTo(originalPosition + new Vector2(50, 0));
+             ChangeTexture(true);
             AudioEngine.PlaySample(OsuSamples.MenuClick);
+            MoveTo(originalPosition + new Vector2(-20, 0));
+           
         }
 
         private void OnHoverLost(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace osum
         {
 
             gameWindow = new GameWindowDesktop();
-            gameWindow.CursorVisible = false;
+
             gameWindow.Run();
         }
 

@@ -19,12 +19,10 @@ namespace osum.GameModes
 
         float actualSpriteScaleX;
 
-        // this is the part that won't let the game compile, tried setting gamewindow to public but it also wont compile even if it shows no errors
-        // public Options(GameWindowDesktop window)
-        // {
-        //    gameWindow = window;
-        //}
-
+        public Options()
+        {
+            gameWindow = new GameWindowDesktop(); 
+        }
         internal override void Initialize()
         {
             pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
