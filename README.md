@@ -1,5 +1,5 @@
 # osu!streamix
- osu!stream 2010 beta client, modified to look like stable
+ osu!stream 2011 beta client, modified to look like stable
 ## IMPORTANT TODO:
 - add android support
 - add pause screen
