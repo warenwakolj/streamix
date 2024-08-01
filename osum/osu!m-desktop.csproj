@@ -142,12 +142,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BassNet\BassNet.csproj">
-      <Project>{2FF2EE6F-7BD7-4ED4-A077-A655C8811A81}</Project>
-      <Name>BassNet</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bass.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
