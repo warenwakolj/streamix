@@ -5,15 +5,21 @@ using osum.Helpers;
 using OpenTK;
 using OpenTK.Graphics;
 using System.Collections.Generic;
+using osum.Graphics.Skins;
+using System.Drawing;
 
 namespace osum.GameModes
 {
     public class Options : GameMode
     {
         internal static Score RankableScore;
-        internal static pText OptionsText;
+        internal static pText Text;
+        private pSprite menuBackground;
+        pSprite HeaderBg;
+
         private CursorSprite cursorSprite;
         private GameWindowDesktop gameWindow; // Call game window
+        private pSpriteCollection SpriteCollection;
 
         List<pSprite> fillSprites = new List<pSprite>();
 
@@ -25,30 +31,59 @@ namespace osum.GameModes
         }
         internal override void Initialize()
         {
+
+            HeaderBg = pSprite.FullscreenWhitePixel;
+            HeaderBg.Alpha = 1;
+            HeaderBg.AlwaysDraw = true;
+            HeaderBg.Colour = Color4.Black;
+            HeaderBg.Scale = new Vector2(2000, 105);
+            HeaderBg.DrawDepth = 0.8f;
+            spriteManager.Add(HeaderBg);
+
+            menuBackground = new pSprite(TextureManager.Load(@"menu-background"), FieldTypes.StandardSnapBottomLeft, OriginTypes.BottomLeft,
+                                         ClockTypes.Game, Vector2.Zero, 0, true, new Color4(1, 1, 1, 0.5f));
+            spriteManager.Add(menuBackground);
+
             pSprite backButton = BackButton.CreateBackButton(OsuMode.MainMenu);
             spriteManager.Add(backButton);
 
-            OptionsText = new pText("Options", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
-            spriteManager.Add(OptionsText);
+            Text = new pText("Options", 20, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
+            spriteManager.Add(Text);
+
+            Vector2 optionsTextSize = Text.MeasureText();
+
+            Text = new pText("Change the way osu! behaves", 11, new Vector2(0, optionsTextSize.Y - 20), new Vector2(0, 0), 1, true, Color4.White, false);
+            spriteManager.Add(Text);
+
+            Text = new pText("Renderer", 17, new Vector2(100, 100), new Vector2(0, 0), 1, true, Color4.White, false);
+            spriteManager.Add(Text);
+
+            Text = new pText("Input", 17, new Vector2(400, 100), new Vector2(0, 0), 1, true, Color4.White, false);
+            spriteManager.Add(Text);
 
             cursorSprite = new CursorSprite();
             cursorSprite.AddToSpriteManager(spriteManager);
 
-            // CheckBox for fullscreen toggle
-            CheckBox fullscreenCheckBox = new CheckBox(new Vector2(100, 200), "Fullscreen");
+            CheckBox fullscreenCheckBox = new CheckBox(new Vector2(10, 150), "Fullscreen");
             fullscreenCheckBox.OnStateChanged += (isSelected) =>
             {
                 gameWindow.ToggleFullscreen();
             };
             fullscreenCheckBox.AddToSpriteManager(spriteManager);
 
-            // CheckBox for VSync toggle
-            CheckBox vsyncCheckBox = new CheckBox(new Vector2(100, 150), "VSync");
+            CheckBox vsyncCheckBox = new CheckBox(new Vector2(150, 150), "VSync");
             vsyncCheckBox.OnStateChanged += (isSelected) =>
             {
                 gameWindow.ToggleVSync();
             };
             vsyncCheckBox.AddToSpriteManager(spriteManager);
+
+            CheckBox cursorCheckBox = new CheckBox(new Vector2(300, 150), "Show windows cursor");
+            cursorCheckBox.OnStateChanged += (isSelected) =>
+            {
+                gameWindow.ToggleCursor();
+            };
+            cursorCheckBox.AddToSpriteManager(spriteManager);
         }
 
         public override void Draw()

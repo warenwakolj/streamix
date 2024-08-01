@@ -19,7 +19,7 @@ internal class CheckBox : pSpriteCollection
         backingPlate.Alpha = 1;
         backingPlate.AlwaysDraw = true;
         backingPlate.Colour = Color4.OrangeRed;
-        backingPlate.Scale = new Vector2(40, 40);
+        backingPlate.Scale = new Vector2(35, 35);
         backingPlate.DrawDepth = 0.8f;
         backingPlate.Position = position;
         SpriteCollection.Add(backingPlate);
@@ -39,7 +39,7 @@ internal class CheckBox : pSpriteCollection
 
         backingPlate.HandleClickOnUp = true;
 
-        text = new pText(textContent, 10, position + new Vector2(50, 0), new Vector2(400, 40), 1, true, Color4.White, false);
+        text = new pText(textContent, 10, position + new Vector2(28, 3), new Vector2(400, 40), 1, true, Color4.White, false);
         SpriteCollection.Add(text);
     }
 

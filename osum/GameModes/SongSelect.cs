@@ -33,7 +33,6 @@ namespace osum
 
         internal override void Initialize()
         {
-            AudioEngine.Music.Stop();
             InitializeBeatmaps();
 			
 			InputManager.OnMove += InputManager_OnMove;
@@ -147,23 +146,6 @@ namespace osum
         }
 		
 		float offset;
-
-        private void PlaySelectedSong(Beatmap beatmap)
-        {
-            if (beatmap != null && !string.IsNullOrEmpty(beatmap.AudioFilename))
-            {
-                string audioFilePath = Path.Combine(beatmap.ContainerFilename, beatmap.AudioFilename);
-                if (File.Exists(audioFilePath))
-                {
-                    byte[] audioData = File.ReadAllBytes(audioFilePath);
-                    if (audioData != null)
-                    {
-                        AudioEngine.Music.Load(audioData);
-                        AudioEngine.Music.Play();
-                    }
-                }
-            }
-        }
 
         public override void Draw()
         {

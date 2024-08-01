@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace osum.Audio
     {
         private GCHandle audioHandle;
         private static int audioStream;
+        private SYNCPROC endSyncProc;
 
         public BackgroundAudioPlayerDesktop()
         {
@@ -19,6 +21,8 @@ namespace osum.Audio
             Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, (IntPtr)0, null);
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 10);
+
+            endSyncProc = new SYNCPROC(EndSync);
         }
 
         public float CurrentVolume
@@ -61,6 +65,10 @@ namespace osum.Audio
             FreeMusic();
             audioHandle = GCHandle.Alloc(audio, GCHandleType.Pinned);
             audioStream = Bass.BASS_StreamCreateFile(audioHandle.AddrOfPinnedObject(), 0, audio.Length, BASSFlag.BASS_STREAM_PRESCAN);
+
+            // Set end sync callback
+            Bass.BASS_ChannelSetSync(audioStream, BASSSync.BASS_SYNC_END, 0, endSyncProc, IntPtr.Zero);
+
             return true;
         }
 
@@ -86,5 +94,12 @@ namespace osum.Audio
             long position = Bass.BASS_ChannelSeconds2Bytes(audioStream, seconds);
             return Bass.BASS_ChannelSetPosition(audioStream, position);
         }
+
+        private void EndSync(int handle, int channel, int data, IntPtr user)
+        {
+            OnMusicCompleted?.Invoke();
+        }
+
+        public event Action OnMusicCompleted; 
     }
 }

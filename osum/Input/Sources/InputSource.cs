@@ -33,15 +33,17 @@ namespace osum
             if (OnUp != null)
                 OnUp(this, trackingPoint);
 		}
-		
-		public event InputHandler OnClick;
+
+        public event InputHandler OnClick;
+
         protected void TriggerOnClick(TrackingPoint trackingPoint)
-		{
-			if (OnClick != null)
+        {
+            if (OnClick != null)
                 OnClick(this, trackingPoint);
-		}
-		
-		public event InputHandler OnMove;
+        }
+
+
+        public event InputHandler OnMove;
         protected void TriggerOnMove(TrackingPoint trackingPoint)
 		{
 			if (OnMove != null)

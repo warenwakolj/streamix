@@ -43,7 +43,6 @@ internal class BeatmapPanel : pSpriteCollection
             }
             else
             {
-                PlaySelectedSong();
                 if (currentlySelectedPanel != null)
                 {
                     currentlySelectedPanel.Deselect();
@@ -59,44 +58,24 @@ internal class BeatmapPanel : pSpriteCollection
         Regex r = new Regex(@"(.*) - (.*) \((.*)\) \[(.*)\]");
         Match m = r.Match(filename);
 
-        // Extract metadata from filename
         artist = m.Groups[1].Value;
         title = m.Groups[2].Value;
         creator = m.Groups[3].Value;
 
-        // song name 
         text = new pText(title, 10, Vector2.Zero, new Vector2(400, 80), 1, true, Color4.White, false);
         text.Offset = new Vector2(10, 0);
         SpriteCollection.Add(text);
 
-        // artist // mapper
-        text = new pText(creator + " // " + artist, 6, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
+        text = new pText(artist + " // " + creator, 6, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
         text.Offset = new Vector2(12, 15);
         SpriteCollection.Add(text);
 
-        // difficulty
         text = new pText(m.Groups[4].Value, 8, Vector2.Zero, new Vector2(GameBase.WindowBaseSize.Width - 120, 60), 1, true, Color4.White, false);
         text.TextBold = true;
         text.Offset = new Vector2(11, 25);
         SpriteCollection.Add(text);
     }
 
-    private void PlaySelectedSong()
-    {
-        if (Beatmap != null && !string.IsNullOrEmpty(Beatmap.AudioFilename))
-        {
-            string audioFilePath = Path.Combine(Beatmap.ContainerFilename, Beatmap.AudioFilename);
-            if (File.Exists(audioFilePath))
-            {
-                byte[] audioData = File.ReadAllBytes(audioFilePath);
-                if (audioData != null)
-                {
-                    AudioEngine.Music.Load(audioData);
-                    AudioEngine.Music.Play();
-                }
-            }
-        }
-    }
 
     public void Select()
     {

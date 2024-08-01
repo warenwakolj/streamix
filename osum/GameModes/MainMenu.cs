@@ -14,12 +14,14 @@ using System;
 using osum.GameModes.MainMenu;
 using osum.Support;
 using System.Text.RegularExpressions;
+using OpenTK.Platform;
 
 namespace osum
 {
     class MainMenu : GameMode
     {
         private pSprite osuLogo;
+        private pSprite menuNp;
         private CursorSprite cursorSprite;
         private List<Beatmap> availableMaps;
         private const string BEATMAP_DIRECTORY = "Beatmaps";
@@ -34,10 +36,28 @@ namespace osum
         {
             InitializeBeatmaps();
 
-            InfoText = new pText("Loading...", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
+            InfoText = new pText("Loading...", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false)
+            {
+                Field = FieldTypes.StandardSnapRight,
+                Origin = OriginTypes.TopRight,
+                Position = new Vector2(-10, 0)
+            };
             spriteManager.Add(InfoText);
 
-            PlayRandomBeatmap();
+            Vector2 textSize = InfoText.MeasureText();
+
+
+            menuNp = new pSprite(TextureManager.Load(@"menu-np"), FieldTypes.StandardSnapRight, OriginTypes.TopRight, ClockTypes.Mode,
+                                 new Vector2(textSize.X  - 30, 0),
+                                 1f, true, Color4.White);
+            spriteManager.Add(menuNp);
+
+
+            UserCard UserCard = new UserCard(new Vector2(4, 4), "Guest");
+            UserCard.AddToSpriteManager(spriteManager);
+
+            MenuCopyright MenuCopyright = new MenuCopyright();
+            spriteManager.Add(MenuCopyright);
 
             menuBackground = new pSprite(TextureManager.Load(@"menu-background"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
                                  ClockTypes.Mode, Vector2.Zero, 0, true, Color.White);
@@ -54,7 +74,6 @@ namespace osum
 
                 if (osuLogoClickCount == 0)
                 {
-
                     osuLogoClickCount++;
                     AudioEngine.PlaySample(OsuSamples.MenuHit);
                     MoveTo(new Vector2(-120, -20));
@@ -71,9 +90,12 @@ namespace osum
                     spriteManager.Add(ButtonQuit);
                     ButtonQuit.SetPosition(new Vector2(220, 240));
                 }
-
             };
+
+            PlayRandomBeatmap();
         }
+
+
 
         internal void MoveTo(Vector2 location)
         {
@@ -125,7 +147,7 @@ namespace osum
                 byte[] audioData = File.ReadAllBytes(audioFilePath);
                 if (audioData != null)
                 {
-
+                    // Load the beatmap file to find the PreviewTime
                     string beatmapFilePath = Path.Combine(randomBeatmap.ContainerFilename, randomBeatmap.BeatmapFilename);
                     string[] beatmapLines = File.ReadAllLines(beatmapFilePath);
                     int previewTime = 0;

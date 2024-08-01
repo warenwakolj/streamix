@@ -4,6 +4,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using osum.GameModes;
+using osum.Input.Sources;
 using osum.Support;
 
 namespace osum
@@ -12,12 +13,16 @@ namespace osum
     {
         private bool isFullscreen;
         private bool isVSyncEnabled;
+        private bool isCursorVisible;
 
-        public GameWindowDesktop() : base(1024, 768, GraphicsMode.Default, "osu!")
+        public GameWindowDesktop() : base(1024, 768, GraphicsMode.Default, "osu! b.2013111111999999999999 xdd??")
         {
             VSync = VSyncMode.Off;
+            WindowState = WindowState.Normal;
             isFullscreen = false; 
-            isVSyncEnabled = false; 
+            isVSyncEnabled = false;
+            CursorVisible = false;
+            isCursorVisible = false;
         }
 
         public void Run()
@@ -30,13 +35,30 @@ namespace osum
             if (isFullscreen)
             {
                 WindowState = WindowState.Normal;
+                WindowBorder = WindowBorder.Resizable;
                 DisplayDevice.Default.RestoreResolution();
             }
             else
             {
                 WindowState = WindowState.Fullscreen;
+                WindowBorder = WindowBorder.Hidden;
+                DisplayDevice.Default.ChangeResolution(DisplayDevice.Default.Width, DisplayDevice.Default.Height, DisplayDevice.Default.BitsPerPixel, DisplayDevice.Default.RefreshRate);
             }
             isFullscreen = !isFullscreen;
+        }
+
+
+        public void ToggleCursor()
+        {
+            if (isCursorVisible)
+            {
+                CursorVisible = false;
+            }
+            else
+            {
+                CursorVisible = true;
+            }
+            isCursorVisible = !isCursorVisible;
         }
 
         public void ToggleVSync()
@@ -52,6 +74,8 @@ namespace osum
             isVSyncEnabled = !isVSyncEnabled;
         }
 
+
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -61,7 +85,11 @@ namespace osum
             GL.Enable(EnableCap.Blend);
 
             GameBase.Instance.Initialize();
-            KeyPress += new EventHandler<KeyPressEventArgs>(GameWindowDesktop_KeyPress);
+
+            var keyboardInputSource = new InputSourceKeyboard(this.Keyboard);
+            InputManager.AddSource(keyboardInputSource);
+
+            KeyPress += GameWindowDesktop_KeyPress;
         }
 
         void GameWindowDesktop_KeyPress(object sender, KeyPressEventArgs e)
@@ -79,6 +107,7 @@ namespace osum
                     break;
             }
         }
+
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
