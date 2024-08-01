@@ -224,6 +224,23 @@ namespace osum.Graphics.Sprites
             }
         }
 
+        internal pSprite ScaleTo(float target, int duration, EasingTypes easing = EasingTypes.None)
+        {
+            Transformations.RemoveAll(t => t.Type == TransformationType.Scale);
+
+            if (target == ScaleScalar)
+                return this;
+
+            if (duration == 0)
+                ScaleScalar = target;
+
+            int now = ClockingNow;
+
+            Transform(new Transformation(TransformationType.Scale, ScaleScalar, target, now, now + duration, easing));
+
+            return this;
+        }
+
         public virtual void Update()
         {
             UpdateTransformations();

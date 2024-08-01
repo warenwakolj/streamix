@@ -30,11 +30,15 @@ namespace osum.GameModes.MainMenu
                 backgroundTexture.Scale.Y = 1;
                 backgroundTexture.Scale.X = 1;
                 backgroundTexture.DrawDepth = 0.9f;
+                backgroundTexture.Alpha = 0;  // Initial alpha value
                 SpriteCollection.Add(backgroundTexture);
+
+
+                backgroundTexture.FadeIn(150);  
             }
 
             backingPlate = pSprite.FullscreenWhitePixel;
-            backingPlate.Alpha = 0;
+            backingPlate.Alpha = 0; 
             backingPlate.Scale.Y = 89;
             backingPlate.Scale.X = 583;
             SpriteCollection.Add(backingPlate);
@@ -78,8 +82,13 @@ namespace osum.GameModes.MainMenu
         {
             originalPosition = location;
             if (backgroundTexture != null)
-                backgroundTexture.MoveTo(location, 150);
-            backingPlate.MoveTo(location, 150);
+                backgroundTexture.MoveTo(location, 150, EasingTypes.In);
+            backingPlate.MoveTo(location, 150, EasingTypes.In);
+        }
+
+        public pSprite GetSprite()
+        {
+            return backgroundTexture;
         }
 
         internal void SetPosition(Vector2 location)

@@ -20,16 +20,20 @@ namespace osum
         pSprite SongSelectTop;
         pSprite SongSelectBottom;
         private CursorSprite cursorSprite;
+        private Beatmap selectedBeatmap;
+
+
         public SongSelect() : base()
         {
         }
 
         static List<Beatmap> availableMaps;
         internal static pText MetadataText;
-        
+
 
         internal override void Initialize()
         {
+            AudioEngine.Music.Stop();
             InitializeBeatmaps();
 			
 			InputManager.OnMove += InputManager_OnMove;
@@ -54,9 +58,27 @@ namespace osum
             cursorSprite = new CursorSprite();
             cursorSprite.AddToSpriteManager(spriteManager);
 
+            HighlightSelectedBeatmap();
+
         }
 
-        
+        public SongSelect(Beatmap selectedBeatmap) : base()
+        {
+            this.selectedBeatmap = selectedBeatmap;
+        }
+
+        private void HighlightSelectedBeatmap()
+        {
+            foreach (var panel in panels)
+            {
+                if (panel.Beatmap == selectedBeatmap)
+                {
+                    panel.Select(); 
+                    break;
+                }
+            }
+        }
+
         public static void UpdateMetadataText(string text)
         {
             if (MetadataText != null)
@@ -83,29 +105,29 @@ namespace osum
 		const string BEATMAP_DIRECTORY = "Beatmaps";
 		
 		List<BeatmapPanel> panels = new List<BeatmapPanel>();
-		
+
         private void InitializeBeatmaps()
         {
             availableMaps = new List<Beatmap>();
 
             if (Directory.Exists(BEATMAP_DIRECTORY))
-			foreach (string s in Directory.GetDirectories(BEATMAP_DIRECTORY))
-            {
-                Beatmap reader = new Beatmap(s);
-
-                foreach (string file in reader.Package == null ? Directory.GetFiles(s,"*.osu") : reader.Package.MapFiles)
+                foreach (string s in Directory.GetDirectories(BEATMAP_DIRECTORY))
                 {
-                    
-					Beatmap b = new Beatmap(s);
-                    b.BeatmapFilename = Path.GetFileName(file);
-					
-					BeatmapPanel panel = new BeatmapPanel(b);
-					spriteManager.Add(panel);
+                    Beatmap reader = new Beatmap(s);
 
-                    availableMaps.Add(b);
-					panels.Add(panel);
+                    foreach (string file in reader.Package == null ? Directory.GetFiles(s, "*.osu") : reader.Package.MapFiles)
+                    {
+                        Beatmap b = new Beatmap(s);
+                        b.BeatmapFilename = Path.GetFileName(file);
+
+                        BeatmapPanel panel = new BeatmapPanel(b);
+                        spriteManager.Add(panel);
+
+                        availableMaps.Add(b);
+                        panels.Add(panel);
+                    }
                 }
-            }
+        
 			
 #if IPHONE
 			string docs = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -125,7 +147,24 @@ namespace osum
         }
 		
 		float offset;
-		
+
+        private void PlaySelectedSong(Beatmap beatmap)
+        {
+            if (beatmap != null && !string.IsNullOrEmpty(beatmap.AudioFilename))
+            {
+                string audioFilePath = Path.Combine(beatmap.ContainerFilename, beatmap.AudioFilename);
+                if (File.Exists(audioFilePath))
+                {
+                    byte[] audioData = File.ReadAllBytes(audioFilePath);
+                    if (audioData != null)
+                    {
+                        AudioEngine.Music.Load(audioData);
+                        AudioEngine.Music.Play();
+                    }
+                }
+            }
+        }
+
         public override void Draw()
         {
 			base.Draw();
@@ -137,15 +176,17 @@ namespace osum
             cursorSprite.Update();
 
             if (Director.PendingMode == OsuMode.Unknown)
-			{
-				Vector2 pos = new Vector2(320,-10 + offset);
-				foreach (BeatmapPanel p in panels)
-				{
-					p.MoveTo(pos);
-					pos.Y += 60;
-				}
-			}
+            {
+                Vector2 pos = new Vector2(320, -10 + offset);
+                foreach (BeatmapPanel p in panels)
+                {
+                    p.MoveTo(pos);
+                    pos.Y += 60;
+                }
+            }
         }
     }
+
+
 }
 

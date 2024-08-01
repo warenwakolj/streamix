@@ -151,6 +151,12 @@ namespace osum.Graphics.Sprites
             return 0.8f - (number % 6000000) / 10000000;
         }
 
+        internal void Remove(pSprite sprite)
+        {
+            Sprites.Remove(sprite);
+        }
+
+
         public void Dispose()
         {
             foreach (pSprite p in Sprites)

@@ -34,6 +34,7 @@ namespace osum.GameModes
         static Beatmap Beatmap;
         public static bool Autoplay;
 
+
         public Player() : base()
         {
         }
@@ -68,6 +69,7 @@ namespace osum.GameModes
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
         }
+
 
         public override void Dispose()
         {

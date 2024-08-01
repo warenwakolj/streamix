@@ -91,6 +91,7 @@ namespace osum.Graphics.Sprites
             }
         }
 
+
         internal Color4 CurrentColour
         {
             get
