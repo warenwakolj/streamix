@@ -23,7 +23,6 @@ namespace osum
         private pSprite menuNp;
         private CursorSprite cursorSprite;
         internal static pText InfoText;
-        private MenuMusicManager MenuMusicManager;
 
         public static Beatmap SelectedBeatmap { get; private set; }
 
@@ -31,7 +30,6 @@ namespace osum
 
         internal override void Initialize()
         {
-            MenuMusicManager = new MenuMusicManager();
 
             InfoText = new pText("Loading...", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false)
             {
@@ -89,7 +87,6 @@ namespace osum
                 }
             };
 
-            MenuMusicManager.PlayRandomBeatmap(InfoText);
         }
 
         internal void MoveTo(Vector2 location)

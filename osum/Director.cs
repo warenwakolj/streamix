@@ -137,7 +137,10 @@ namespace osum
 
             if (CurrentMode != null)
                 CurrentMode.Update();
+
+            MenuMusicManager.Instance.Update();
         }
+
 
         /// <summary>
         /// Draws the current game mode.

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using osum.Audio;
 using osum.GameModes;
 using osum;
+using System;
 
 internal class BeatmapPanel : pSpriteCollection
 {
@@ -79,14 +80,17 @@ internal class BeatmapPanel : pSpriteCollection
 
     public void Select()
     {
+        Console.WriteLine("Beatmap selected");
         isSelected = true;
         currentlySelectedPanel = this;
         backingPlate.Colour = Color4.Orange;
 
-        // Update metadata text in SongSelect
         string metadata = $"{artist} - {title} (mapped by {creator})";
         SongSelect.UpdateMetadataText(metadata);
+
+        MenuMusicManager.Instance.PlayBeatmap(Beatmap);
     }
+
 
     private void Deselect()
     {

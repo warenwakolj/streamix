@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using osum.Audio;
+using osum.GameModes;
 using osum.GameplayElements;
 using osum.GameplayElements.Beatmaps;
 using osum.Graphics.Sprites;
@@ -14,11 +15,33 @@ namespace osum
         private const string BEATMAP_DIRECTORY = "Beatmaps";
         private List<Beatmap> availableMaps;
         private Beatmap currentlyPlayingBeatmap;
+        private static MenuMusicManager instance;
 
-        public MenuMusicManager()
+        public static MenuMusicManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MenuMusicManager();
+                }
+                return instance;
+            }
+        }
+
+        public void Update()
+        {
+            if (Director.CurrentOsuMode == OsuMode.MainMenu && currentlyPlayingBeatmap == null)
+            {
+                PlayRandomBeatmap(MainMenu.InfoText);
+            }
+        }
+
+        private MenuMusicManager()
         {
             InitializeBeatmaps();
         }
+
 
         private void InitializeBeatmaps()
         {
@@ -91,6 +114,49 @@ namespace osum
                 }
             }
         }
+
+        public void PlayBeatmap(Beatmap beatmap)
+        {
+            if (beatmap == null) return;
+
+            HitObjectManager hitObjectManager = new HitObjectManager(beatmap);
+            hitObjectManager.LoadFile();
+
+            string audioFilename = beatmap.AudioFilename;
+
+            if (!string.IsNullOrEmpty(audioFilename))
+            {
+                string audioFilePath = Path.Combine(beatmap.ContainerFilename, audioFilename);
+                byte[] audioData = File.ReadAllBytes(audioFilePath);
+                if (audioData != null)
+                {
+                    Console.WriteLine("Audio data loaded successfully");
+                    string beatmapFilePath = Path.Combine(beatmap.ContainerFilename, beatmap.BeatmapFilename);
+                    string[] beatmapLines = File.ReadAllLines(beatmapFilePath);
+                    int previewTime = 0;
+
+                    foreach (string line in beatmapLines)
+                    {
+                        if (line.StartsWith("PreviewTime"))
+                        {
+                            previewTime = int.Parse(line.Split(':')[1].Trim());
+                            break;
+                        }
+                    }
+                    AudioEngine.Music.Stop();
+                    AudioEngine.Music.Load(audioData);
+                    AudioEngine.Music.Play();
+
+                    if (previewTime > 0)
+                    {
+                        AudioEngine.Music.SetCurrentTime(previewTime / 1000.0);
+                    }
+
+                    currentlyPlayingBeatmap = beatmap;
+                }
+            }
+        }
+
 
         public Beatmap GetCurrentlyPlayingBeatmap()
         {

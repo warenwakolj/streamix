@@ -1,4 +1,5 @@
-﻿using System;
+﻿using osum.GameplayElements.Beatmaps;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,31 @@ namespace osum.GameplayElements
     {
         public static float HitObjectRadiusDefault { get { return 64 * GameBase.SpriteRatioToWindowBase; } }
 
+        private static Beatmap beatmap;
+
+        public static void Initialize(Beatmap bm)
+        {
+            beatmap = bm;
+        }
+
         /// <summary>
         /// Radius of hitObjects in a gamefield.
         /// </summary>
-        public static float HitObjectRadius { get { return 48 * GameBase.SpriteRatioToWindowBase; } }
+        public static float HitObjectRadius
+        {
+            get
+            {
+                float cs = beatmap.DifficultyCircleSize;
+                float radius = 54.4f - 4.48f * (cs) ; 
+                return radius * GameBase.SpriteRatioToWindowBase;
+            }
+        }
+
         public static float HitObjectSizeModifier = 1f;
 
         public static int SliderVelocity = 300;
 
         internal static int PreEmpt { get { return 1000; } }
-        // TODO: PreEmptSnakeStart should depend on the slider length.
-        // For very short sliders, it should be around 50% of PreEmpt,
-        // whereas for long ones, it should be as large as (but never larger than) PreEmpt.
         internal static int PreEmptSnakeStart { get { return 1000; } }
         internal static int PreEmptSnakeEnd { get { return 500; } }
         internal static int HitWindow50 { get { return 150; } }

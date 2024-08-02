@@ -225,7 +225,7 @@
                 //Load the main menu initially.
                 Director.ChangeMode(OsuMode.MainMenu, new FadeTransition(200,500));
 
-                fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(120,40), 1, true, Color4.White, false);
+                fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
                 fpsDisplay.Field = FieldTypes.StandardSnapBottomRight;
                 fpsDisplay.Origin = OriginTypes.BottomRight;
                 spriteManager.Add(fpsDisplay);
