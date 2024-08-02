@@ -2,19 +2,18 @@
 using OpenTK;
 using osum.Audio;
 using osum.GameModes;
-using osum.GameplayElements.Beatmaps;
-using osum.GameplayElements;
 using osum.Graphics.Skins;
 using osum.Graphics.Sprites;
 using osum.Helpers;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System;
 using osum.GameModes.MainMenu;
 using osum.Support;
 using System.Text.RegularExpressions;
 using OpenTK.Platform;
+using osum.GameplayElements.Beatmaps;
+using osum.GameplayElements;
 
 namespace osum
 {
@@ -23,10 +22,8 @@ namespace osum
         private pSprite osuLogo;
         private pSprite menuNp;
         private CursorSprite cursorSprite;
-        private List<Beatmap> availableMaps;
-        private const string BEATMAP_DIRECTORY = "Beatmaps";
         internal static pText InfoText;
-        private Beatmap currentlyPlayingBeatmap;
+        private MenuMusicManager MenuMusicManager;
 
         public static Beatmap SelectedBeatmap { get; private set; }
 
@@ -34,7 +31,7 @@ namespace osum
 
         internal override void Initialize()
         {
-            InitializeBeatmaps();
+            MenuMusicManager = new MenuMusicManager();
 
             InfoText = new pText("Loading...", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false)
             {
@@ -48,7 +45,7 @@ namespace osum
 
 
             menuNp = new pSprite(TextureManager.Load(@"menu-np"), FieldTypes.StandardSnapRight, OriginTypes.TopRight, ClockTypes.Mode,
-                                 new Vector2(textSize.X  - 30, 0),
+                                 new Vector2(textSize.X - 30, 0),
                                  1f, true, Color4.White);
             spriteManager.Add(menuNp);
 
@@ -92,10 +89,8 @@ namespace osum
                 }
             };
 
-            PlayRandomBeatmap();
+            MenuMusicManager.PlayRandomBeatmap(InfoText);
         }
-
-
 
         internal void MoveTo(Vector2 location)
         {
@@ -108,83 +103,6 @@ namespace osum
             cursorSprite.Update();
             base.Update();
         }
-
-        private void InitializeBeatmaps()
-        {
-            availableMaps = new List<Beatmap>();
-
-            if (Directory.Exists(BEATMAP_DIRECTORY))
-            {
-                foreach (string directory in Directory.GetDirectories(BEATMAP_DIRECTORY))
-                {
-                    foreach (string file in Directory.GetFiles(directory, "*.osu"))
-                    {
-                        Beatmap beatmap = new Beatmap(directory)
-                        {
-                            BeatmapFilename = Path.GetFileName(file)
-                        };
-
-                        availableMaps.Add(beatmap);
-                    }
-                }
-            }
-        }
-
-        private void PlayRandomBeatmap()
-        {
-            if (availableMaps == null || availableMaps.Count == 0) return;
-
-            Random random = new Random();
-            Beatmap randomBeatmap = availableMaps[random.Next(availableMaps.Count)];
-            HitObjectManager hitObjectManager = new HitObjectManager(randomBeatmap);
-            hitObjectManager.LoadFile();
-
-            string audioFilename = randomBeatmap.AudioFilename;
-
-            if (!string.IsNullOrEmpty(audioFilename))
-            {
-                string audioFilePath = Path.Combine(randomBeatmap.ContainerFilename, audioFilename);
-                byte[] audioData = File.ReadAllBytes(audioFilePath);
-                if (audioData != null)
-                {
-                    // Load the beatmap file to find the PreviewTime
-                    string beatmapFilePath = Path.Combine(randomBeatmap.ContainerFilename, randomBeatmap.BeatmapFilename);
-                    string[] beatmapLines = File.ReadAllLines(beatmapFilePath);
-                    int previewTime = 0;
-
-                    foreach (string line in beatmapLines)
-                    {
-                        if (line.StartsWith("PreviewTime"))
-                        {
-                            previewTime = int.Parse(line.Split(':')[1].Trim());
-                            break;
-                        }
-                    }
-
-                    AudioEngine.Music.Load(audioData);
-                    AudioEngine.Music.Play();
-
-                    if (previewTime > 0)
-                    {
-                        AudioEngine.Music.SetCurrentTime(previewTime / 1000.0);
-                    }
-
-                    string filename = Path.GetFileNameWithoutExtension(randomBeatmap.BeatmapFilename);
-                    Regex regex = new Regex(@"(.*) - (.*) \((.*)\) \[(.*)\]");
-                    Match match = regex.Match(filename);
-                    string artist = match.Groups[1].Value;
-                    string songName = match.Groups[2].Value;
-
-                    InfoText.Text = $"{artist} - {songName}";
-
-                    currentlyPlayingBeatmap = randomBeatmap;
-                    SelectedBeatmap = randomBeatmap;
-                }
-            }
-        }
-
-
-
 
         private pSprite menuBackground;
 
@@ -212,11 +130,6 @@ namespace osum
 
                 lastBgmBeat = newBeat;
             }
-        }
-
-        public Beatmap GetCurrentlyPlayingBeatmap()
-        {
-            return currentlyPlayingBeatmap;
         }
     }
 }

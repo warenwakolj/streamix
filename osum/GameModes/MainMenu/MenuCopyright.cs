@@ -63,7 +63,7 @@ namespace osum.GameModes.MainMenu
 
         public pSprite GetSprite()
         {
-            return backgroundTexture;
+            return backgroundTexture;   
         }
 
         internal void SetPosition(Vector2 location)
