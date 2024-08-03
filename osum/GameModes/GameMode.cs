@@ -15,7 +15,8 @@ namespace osum.GameModes
 		Ranking,
         Options,
         Failed, 
-        Exit
+        Exit,
+        Pause
     }
 
     /// <summary>

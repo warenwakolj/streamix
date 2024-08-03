@@ -107,6 +107,7 @@ namespace osum
         }
 
 
+
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             if (Director.CurrentOsuMode != OsuMode.MainMenu)
@@ -126,6 +127,8 @@ namespace osum
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
+
+
 
         }
 

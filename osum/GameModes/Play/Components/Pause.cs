@@ -1,71 +1,71 @@
-﻿using System;
+﻿using OpenTK.Graphics;
 using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Input;
+using osum.GameModes;
 using osum.Graphics.Skins;
 using osum.Graphics.Sprites;
 using osum.Helpers;
+using osum;
 
-namespace osum.GameModes
+public class PauseMenu : GameMode
 {
-    public class PauseMenu : GameMode
+    private pSprite resumeButton;
+    private pSprite OptionsButton;
+    private pSprite background;
+    private CursorSprite cursorSprite;
+
+    public PauseMenu()
     {
-        private pSprite resumeButton;
-        private pSprite OptionsButton;
-        private pSprite background;
+        Initialize();
+    }
 
-        public PauseMenu()
+    internal override void Initialize()
+    {
+        background = new pSprite(TextureManager.Load("menu-background"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
+                                 ClockTypes.Game, Vector2.Zero, 1, true, new Color4(0, 0, 0, 0.8f));
+        spriteManager.Add(background);
+
+        resumeButton = new pSprite(TextureManager.Load("pause-continue"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
+                                   ClockTypes.Game, new Vector2(0, -50), 1, true, Color4.White);
+        resumeButton.Scale = new Vector2(0.5f, 0.5f);
+        resumeButton.OnClick += delegate
         {
-            Initialize();
-        }
-
-        internal override void Initialize()
-        {
-            // Create a semi-transparent background for the pause menu
-            background = new pSprite(TextureManager.Load("menu-background"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                                     ClockTypes.Game, Vector2.Zero, 1, true, new Color4(0, 0, 0, 0.8f));
-            spriteManager.Add(background);
-
-            // Create the resume button
-            resumeButton = new pSprite(TextureManager.Load("pause-continue"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                                       ClockTypes.Game, new Vector2(0, -50), 1, true, Color4.White);
-            resumeButton.Scale = new Vector2(0.5f, 0.5f);
-            resumeButton.OnClick += delegate
+            var player = Director.CurrentMode as Player;
+            if (player != null)
             {
-                Director.ChangeMode(OsuMode.Play);
-            };
-            spriteManager.Add(resumeButton);
+                player.Resume();
+            }
+            Director.ChangeMode(OsuMode.Play);
+        };
+        spriteManager.Add(resumeButton);
 
-            // Create the song select button
-            OptionsButton = new pSprite(TextureManager.Load("pause-back"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                                           ClockTypes.Game, new Vector2(0, 50), 1, true, Color4.White);
-            OptionsButton.Scale = new Vector2(0.5f, 0.5f);
-            OptionsButton.OnClick += delegate
-            {
-                Director.ChangeMode(OsuMode.Ranking);
-            };
-            spriteManager.Add(OptionsButton);
-        }
-
-        public override void Update()
+        OptionsButton = new pSprite(TextureManager.Load("pause-back"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
+                                       ClockTypes.Game, new Vector2(0, 50), 1, true, Color4.White);
+        OptionsButton.Scale = new Vector2(0.5f, 0.5f);
+        OptionsButton.OnClick += delegate
         {
-            // Any updates related to the pause menu can be handled here
-            base.Update();
-        }
+            Director.ChangeMode(OsuMode.SongSelect);
+        };
+        spriteManager.Add(OptionsButton);
+        cursorSprite = new CursorSprite();
+        cursorSprite.AddToSpriteManager(spriteManager);
+    }
 
-        public override void Draw()
-        {
-            // Draw the pause menu elements
-            base.Draw();
-        }
+    public override void Update()
+    {
+        base.Update();
+        cursorSprite.Update();
+    }
 
-        public override void Dispose()
-        {
-            // Clean up resources
-            resumeButton.UnbindAllEvents();
-            OptionsButton.UnbindAllEvents();
+    public override void Draw()
+    {
+        base.Draw();
+    }
 
-            base.Dispose();
-        }
+    public override void Dispose()
+    {
+        resumeButton.UnbindAllEvents();
+        OptionsButton.UnbindAllEvents();
+
+        base.Dispose();
     }
 }

@@ -17,6 +17,10 @@ using osum.GameplayElements.Scoring;
 using osum.GameModes.Play.Components;
 using osum.Graphics.Sprites;
 using osum.Graphics.Skins;
+using System.Linq;
+
+using System.Text;
+using OpenTK.Input;
 
 namespace osum.GameModes
 {
@@ -28,6 +32,8 @@ namespace osum.GameModes
         ScoreDisplay scoreDisplay;
         ComboCounter comboCounter;
         private CursorSprite cursorSprite;
+           private bool isPaused = false;
+    private double pausedTime;
 
         Score currentScore;
 
@@ -144,6 +150,24 @@ namespace osum.GameModes
             scoreDisplay.SetAccuracy(currentScore.accuracy * 100);
         }
 
+        public void Pause()
+        {
+            if (isPaused) return;
+
+            isPaused = true;
+            pausedTime = AudioEngine.Music.CurrentTime;
+            AudioEngine.Music.Pause();
+        }
+
+        public void Resume()
+        {
+            if (!isPaused) return;
+
+            isPaused = false;
+            AudioEngine.Music.SetCurrentTime(pausedTime);
+            AudioEngine.Music.Play();
+        }
+
         public override void Update()
         {
             if (hitObjectManager.AllNotesHit)
@@ -163,7 +187,29 @@ namespace osum.GameModes
             scoreDisplay.Update();
             comboCounter.Update();
 
+            if (isPaused)
+            {
+                var keyboardState = Keyboard.GetState(); // Renamed to avoid conflict
+                if (keyboardState.IsKeyDown(Key.Escape))
+                {
+                    Director.ChangeMode(OsuMode.Play);
+                }
+
+                return;
+            }
+
+
+            var state = Keyboard.GetState();
+            if (state.IsKeyDown(Key.Escape))
+            {
+                Director.ChangeMode(OsuMode.Pause);
+            }
+
             base.Update();
+
+
+
+
         }
 
 
