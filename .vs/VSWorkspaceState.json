@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BassNet",
+    "\\BassNet\\Bass.Net",
+    "\\BassNet\\Bass.Net\\Un4seen",
+    "\\BassNet\\obj",
+    "\\BassNet\\Properties",
+    "\\osum"
   ],
-  "SelectedNode": "\\osu!m-desktop.sln",
+  "SelectedNode": "\\osum\\osu!m-desktop.sln",
   "PreviewInSolutionExplorer": false
 }

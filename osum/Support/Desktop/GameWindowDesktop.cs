@@ -127,8 +127,6 @@ namespace osum
         {
             base.OnUpdateFrame(e);
 
-            if (Keyboard[Key.Escape])
-                Exit();
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)

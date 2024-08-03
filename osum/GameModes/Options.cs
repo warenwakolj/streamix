@@ -18,7 +18,7 @@ namespace osum.GameModes
         pSprite HeaderBg;
 
         private CursorSprite cursorSprite;
-        private GameWindowDesktop gameWindow; // Call game window
+        private GameWindowDesktop gameWindow; 
         private pSpriteCollection SpriteCollection;
 
         List<pSprite> fillSprites = new List<pSprite>();
@@ -27,11 +27,11 @@ namespace osum.GameModes
 
         public Options()
         {
-            gameWindow = new GameWindowDesktop(); 
+            gameWindow = new GameWindowDesktop();
         }
+
         internal override void Initialize()
         {
-
             HeaderBg = pSprite.FullscreenWhitePixel;
             HeaderBg.Alpha = 1;
             HeaderBg.AlwaysDraw = true;
@@ -84,6 +84,21 @@ namespace osum.GameModes
                 gameWindow.ToggleCursor();
             };
             cursorCheckBox.AddToSpriteManager(spriteManager);
+
+            // Add Dropdown to Options
+            AddDropdown();
+        }
+
+        private void AddDropdown()
+        {
+            // Create the Dropdown instance
+            Dropdown dropdown = new Dropdown("Select an option");
+
+            // Position the Dropdown
+            dropdown.MoveTo(new Vector2(100, 200));
+
+            // Add Dropdown to spriteManager
+            dropdown.SpriteCollection.ForEach(sprite => spriteManager.Add(sprite));
         }
 
         public override void Draw()

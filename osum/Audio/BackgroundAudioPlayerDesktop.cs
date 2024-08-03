@@ -18,7 +18,7 @@ namespace osum.Audio
         public BackgroundAudioPlayerDesktop()
         {
             BassNet.Registration("poo@poo.com", "2X25242411252422");
-            Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, (IntPtr)0, null);
+            Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, (IntPtr)0);
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 10);
 

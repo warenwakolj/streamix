@@ -27,12 +27,12 @@ namespace osum
 
         private void OnClick(InputSource source, TrackingPoint point)
         {
-            cursor.ScaleTo(1.4f, 500, EasingTypes.In);
+            cursor.ScaleTo(1.1f, 100, EasingTypes.In);
         }
 
         private void OnClickLost(InputSource source, TrackingPoint point)
         {
-            cursor.ScaleTo(1f, 400, EasingTypes.In);
+            cursor.ScaleTo(1f, 100, EasingTypes.In);
         }
 
         public void Update()
@@ -68,15 +68,6 @@ namespace osum
 
                 spriteManager.Draw();
             }
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Game game = new Game();
-            game.Run();
         }
     }
 }
