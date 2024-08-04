@@ -85,21 +85,18 @@ namespace osum.GameModes
             };
             cursorCheckBox.AddToSpriteManager(spriteManager);
 
-            // Add Dropdown to Options
             AddDropdown();
         }
 
         private void AddDropdown()
         {
-            // Create the Dropdown instance
-            Dropdown dropdown = new Dropdown("Select an option");
-
-            // Position the Dropdown
-            dropdown.MoveTo(new Vector2(100, 200));
-
-            // Add Dropdown to spriteManager
+            Dropdown dropdown = new Dropdown("Select an option", new Vector2(100, 200));
+            dropdown.AddOption("Option 1", () => { /* action for option */ });
+            dropdown.AddOption("Option 2", () => { });
+            dropdown.AddOption("Option 3", () => { });
             dropdown.SpriteCollection.ForEach(sprite => spriteManager.Add(sprite));
         }
+
 
         public override void Draw()
         {

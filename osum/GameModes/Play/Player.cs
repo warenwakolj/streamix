@@ -173,23 +173,20 @@ namespace osum.GameModes
             if (hitObjectManager.AllNotesHit)
             {
                 Ranking.RankableScore = currentScore;
-                Console.WriteLine("Transitioning to Ranking mode.");
+
                 Director.ChangeMode(OsuMode.Ranking);
-                return; 
+                return;
             }
 
-
             hitObjectManager.Update();
-
             cursorSprite.Update();
-
             healthBar.Update();
             scoreDisplay.Update();
             comboCounter.Update();
 
             if (isPaused)
             {
-                var keyboardState = Keyboard.GetState(); // Renamed to avoid conflict
+                var keyboardState = Keyboard.GetState();
                 if (keyboardState.IsKeyDown(Key.Escape))
                 {
                     Director.ChangeMode(OsuMode.Play);
@@ -198,19 +195,17 @@ namespace osum.GameModes
                 return;
             }
 
-
             var state = Keyboard.GetState();
             if (state.IsKeyDown(Key.Escape))
             {
                 Director.ChangeMode(OsuMode.Pause);
             }
 
+         
+
             base.Update();
-
-
-
-
         }
+
 
 
         public override void Draw()

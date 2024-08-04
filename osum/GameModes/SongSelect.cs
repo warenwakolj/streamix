@@ -59,6 +59,19 @@ namespace osum
 
             HighlightSelectedBeatmap();
 
+
+            AddDropdown();
+        }
+
+        private void AddDropdown()
+        {
+            Dropdown dropdown = new Dropdown("Global Ranking", new Vector2(7, 67));
+            dropdown.AddOption("Local Ranking", () => { });
+            dropdown.AddOption("Country Ranking", () => { });
+            dropdown.AddOption("Global Ranking", () => { });
+            dropdown.AddOption("Global Ranking (Selected Mods)", () => { });
+            dropdown.AddOption("Friend Ranking", () => { });
+            dropdown.SpriteCollection.ForEach(sprite => spriteManager.Add(sprite));
         }
 
         public SongSelect(Beatmap selectedBeatmap) : base()
