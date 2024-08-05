@@ -114,7 +114,7 @@ namespace osum
 			InputManager.OnMove -= InputManager_OnMove;
 		}
 		
-		const string BEATMAP_DIRECTORY = "Beatmaps";
+		const string BEATMAP_DIRECTORY = "Songs";
 		
 		List<BeatmapPanel> panels = new List<BeatmapPanel>();
 

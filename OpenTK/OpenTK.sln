@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTK", "OpenTK.csproj", "{A9B8840B-72FD-4A6E-8B73-D24ADA1BE1BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9B8840B-72FD-4A6E-8B73-D24ADA1BE1BF}.Debug|x86.ActiveCfg = Debug|x86
+		{A9B8840B-72FD-4A6E-8B73-D24ADA1BE1BF}.Debug|x86.Build.0 = Debug|x86
+		{A9B8840B-72FD-4A6E-8B73-D24ADA1BE1BF}.Release|x86.ActiveCfg = Release|x86
+		{A9B8840B-72FD-4A6E-8B73-D24ADA1BE1BF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA57A794-39D1-4A0A-BF8C-CA6D2D06982C}
+	EndGlobalSection
+EndGlobal

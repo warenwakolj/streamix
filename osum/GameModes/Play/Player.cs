@@ -74,6 +74,7 @@ namespace osum.GameModes
 
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
+
         }
 
 

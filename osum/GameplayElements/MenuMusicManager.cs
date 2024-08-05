@@ -12,7 +12,7 @@ namespace osum
 {
     public class MenuMusicManager
     {
-        private const string BEATMAP_DIRECTORY = "Beatmaps";
+        private const string BEATMAP_DIRECTORY = "Songs";
         private List<Beatmap> availableMaps;
         private Beatmap currentlyPlayingBeatmap;
         private static MenuMusicManager instance;
