@@ -106,6 +106,7 @@
     <Compile Include="Helpers\osu!common\MapStream.cs" />
     <Compile Include="Helpers\pList.cs" />
     <Compile Include="Helpers\pMathHelper.cs" />
+    <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Input\KeyboardHandler.cs" />
     <Compile Include="Input\Sources\InputSource.cs" />
     <Compile Include="Input\Sources\InputSourceMouse.cs" />

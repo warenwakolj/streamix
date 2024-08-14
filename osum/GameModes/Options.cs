@@ -18,6 +18,7 @@ namespace osum.GameModes
         pSprite HeaderBg;
 
         private CursorSprite cursorSprite;
+
         private GameWindowDesktop gameWindow; 
         private pSpriteCollection SpriteCollection;
 
@@ -84,6 +85,16 @@ namespace osum.GameModes
                 gameWindow.ToggleCursor();
             };
             cursorCheckBox.AddToSpriteManager(spriteManager);
+            CheckBox oldScorebarCheckBox;
+            oldScorebarCheckBox = new CheckBox(new Vector2(450, 150), "Old Scorebar Style");
+            oldScorebarCheckBox.IsSelected = SettingsManager.GetSetting<bool>("OldScorebarStyle");
+            oldScorebarCheckBox.OnStateChanged += (isSelected) =>
+            {
+                SettingsManager.SaveSetting("OldScorebarStyle", isSelected);
+            };
+
+            oldScorebarCheckBox.AddToSpriteManager(spriteManager);
+
 
             AddDropdown();
         }
@@ -108,5 +119,8 @@ namespace osum.GameModes
             base.Update();
             cursorSprite.Update();
         }
+
+     
+
     }
 }

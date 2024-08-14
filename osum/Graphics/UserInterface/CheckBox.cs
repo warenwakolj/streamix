@@ -10,6 +10,24 @@ internal class CheckBox : pSpriteCollection
     bool isHovered = false;
     bool isSelected = false;
 
+    public bool IsSelected
+    {
+        get => isSelected;
+        set
+        {
+            if (isSelected != value)
+            {
+                isSelected = value;
+                if (isSelected)
+                    Select();
+                else
+                    Deselect();
+
+                OnStateChanged?.Invoke(isSelected);
+            }
+        }
+    }
+
     public delegate void StateChangedHandler(bool isSelected);
     public event StateChangedHandler OnStateChanged;
 
@@ -25,16 +43,7 @@ internal class CheckBox : pSpriteCollection
         SpriteCollection.Add(backingPlate);
 
         backingPlate.OnClick += delegate {
-            if (isSelected)
-            {
-                Deselect();
-            }
-            else
-            {
-                Select();
-            }
-
-            OnStateChanged?.Invoke(isSelected);
+            IsSelected = !IsSelected;  // Toggle selection
         };
 
         backingPlate.HandleClickOnUp = true;
@@ -45,13 +54,11 @@ internal class CheckBox : pSpriteCollection
 
     private void Select()
     {
-        isSelected = true;
         backingPlate.Colour = Color4.Orange;
     }
 
     private void Deselect()
     {
-        isSelected = false;
         backingPlate.Colour = Color4.OrangeRed;
     }
 
