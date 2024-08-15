@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace osum.GameplayElements
 {
@@ -12,15 +9,18 @@ namespace osum.GameplayElements
         /// <summary>
         /// Radius of hitObjects in a gamefield.
         /// </summary>
-        public static float HitObjectRadius { get { return 48 * GameBase.SpriteRatioToWindowBase; } }
+        private static float hitObjectRadius = 48 * GameBase.SpriteRatioToWindowBase;
+        public static float HitObjectRadius
+        {
+            get { return hitObjectRadius; }
+            private set { hitObjectRadius = value; }
+        }
+
         public static float HitObjectSizeModifier = 1f;
 
         public static int SliderVelocity = 300;
 
         internal static int PreEmpt { get { return 1000; } }
-        // TODO: PreEmptSnakeStart should depend on the slider length.
-        // For very short sliders, it should be around 50% of PreEmpt,
-        // whereas for long ones, it should be as large as (but never larger than) PreEmpt.
         internal static int PreEmptSnakeStart { get { return 1000; } }
         internal static int PreEmptSnakeEnd { get { return 500; } }
         internal static int HitWindow50 { get { return 150; } }
@@ -31,14 +31,17 @@ namespace osum.GameplayElements
         internal static int SpinnerRotationRatio { get { return 5; } }
         internal static int DistanceBetweenTicks { get { return 30; } }
 
-        /// <summary>
-        /// Distance between consecutive follow-line sprites.
-        /// </summary>
         internal static int FollowLineDistance = 32;
+        internal static int FollowLinePreEmpt = 800;
 
         /// <summary>
-        /// Number of milliseconds to preempt the follow line.  Higher will make the line appear earlier.
+        /// Set the hit object radius based on the CS from the beatmap
         /// </summary>
-        internal static int FollowLinePreEmpt = 800;
+        /// <param name="circleSize">The circle size value</param>
+        public static void SetHitObjectRadius(float circleSize)
+        {
+            HitObjectRadius = 54.4f - 4.48f * circleSize;
+            Console.WriteLine($"HitObjectRadius set to: {HitObjectRadius}");
+        }
     }
 }

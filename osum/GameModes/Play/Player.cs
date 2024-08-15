@@ -32,24 +32,42 @@ namespace osum.GameModes
         ScoreDisplay scoreDisplay;
         ComboCounter comboCounter;
         private CursorSprite cursorSprite;
-           private bool isPaused = false;
-    private double pausedTime;
+        private bool isPaused = false;
+        private double pausedTime;
 
         Score currentScore;
 
         static Beatmap Beatmap;
         public static bool Autoplay;
 
-
         public Player() : base()
         {
         }
+
+        private void DisplayBeatmapDifficultySettings()
+        {
+            Console.WriteLine("Beatmap Difficulty Settings:");
+            Console.WriteLine($"- Overall Difficulty (OD): {Beatmap.DifficultyOverall}");
+            Console.WriteLine($"- Circle Size (CS): {Beatmap.DifficultyCircleSize}");
+            Console.WriteLine($"- HP Drain Rate (HP): {Beatmap.DifficultyHpDrainRate}");
+            Console.WriteLine($"- Approach Rate (AR): {Beatmap.DifficultyApproachRate}");
+        }
+
+        private void ApplyCircleSizeModifier()
+        {
+            float circleSize = Beatmap.DifficultyCircleSize;
+            DifficultyManager.SetHitObjectRadius(circleSize);
+
+            Console.WriteLine($"Applied Circle Size Modifier: CS={circleSize}, Radius={DifficultyManager.HitObjectRadius}");
+        }
+
 
         void InputManager_OnDown(InputSource source, TrackingPoint point)
         {
             //pass on the event to hitObjectManager for handling.
             hitObjectManager.HandlePressAt(point);
         }
+
         internal override void Initialize()
         {
             Console.WriteLine("Initializing Player mode.");
@@ -60,6 +78,10 @@ namespace osum.GameModes
             hitObjectManager.OnScoreChanged += new ScoreChangeDelegate(hitObjectManager_OnScoreChanged);
 
             hitObjectManager.LoadFile();
+
+            DisplayBeatmapDifficultySettings();
+
+            ApplyCircleSizeModifier();
 
             healthBar = new HealthBar();
 
@@ -74,7 +96,6 @@ namespace osum.GameModes
 
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
-
         }
 
 
@@ -202,12 +223,8 @@ namespace osum.GameModes
                 Director.ChangeMode(OsuMode.Pause);
             }
 
-         
-
             base.Update();
         }
-
-
 
         public override void Draw()
         {
@@ -226,4 +243,3 @@ namespace osum.GameModes
         }
     }
 }
-
