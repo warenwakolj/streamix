@@ -62,10 +62,20 @@ namespace osum.GameModes
         }
 
 
+
+
         void InputManager_OnDown(InputSource source, TrackingPoint point)
         {
             //pass on the event to hitObjectManager for handling.
             hitObjectManager.HandlePressAt(point);
+        }
+
+        private void ApplyPreEmptModifier()
+        {
+            float approachRate = Beatmap.DifficultyApproachRate;
+            DifficultyManager.SetPreEmptAndFadeIn(approachRate);
+
+            Console.WriteLine($"Applied Approach Rate Modifier: AR={approachRate}, PreEmpt={DifficultyManager.PreEmpt}, FadeIn={DifficultyManager.FadeIn}");
         }
 
         internal override void Initialize()
@@ -82,6 +92,7 @@ namespace osum.GameModes
             DisplayBeatmapDifficultySettings();
 
             ApplyCircleSizeModifier();
+            ApplyPreEmptModifier();
 
             healthBar = new HealthBar();
 
@@ -97,6 +108,7 @@ namespace osum.GameModes
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
         }
+
 
 
         public override void Dispose()
