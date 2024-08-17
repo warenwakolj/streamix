@@ -7,6 +7,7 @@ using OpenTK.Graphics;
 using System.Collections.Generic;
 using osum.Graphics.Skins;
 using System.Drawing;
+using osum.Online;
 
 namespace osum.GameModes
 {
@@ -109,9 +110,11 @@ namespace osum.GameModes
 
         private void ShowLoginForm()
         {
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.Run(new LoginForm());
+            BanchoClient banchoClient = new BanchoClient();
+            LoginForm loginForm = new LoginForm(banchoClient);
+            System.Windows.Forms.Application.Run(loginForm);
         }
+
 
 
         private void AddDropdown()

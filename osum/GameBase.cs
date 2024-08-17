@@ -52,6 +52,7 @@
     using osum.Audio;
     using System.IO;
     using System.Diagnostics;
+using osum.Online;
 
 
     namespace osum
@@ -59,9 +60,8 @@
         public abstract class GameBase
         {
             public static GameBase Instance;
-
         private BanchoClient banchoClient;
-        private pText connectionStatusText;
+
 
         public static Random Random = new Random();
 
@@ -98,13 +98,6 @@
         
             internal static Vector2 GamefieldOffsetVector1;
 
-        private void InitializeBanchoStatusDisplay()
-        {
-            connectionStatusText = new pText("Connecting...", 10, new Vector2(5, WindowBaseSize.Height - 20), Vector2.Zero, 1, true, Color4.White, false);
-            connectionStatusText.Field = FieldTypes.StandardSnapTopLeft;
-            connectionStatusText.Origin = OriginTypes.BottomLeft;
-            spriteManager.Add(connectionStatusText);
-        }
 
         internal static Vector2 GamefieldToStandard(Vector2 vec)
             {
@@ -141,16 +134,34 @@
             /// </summary>
             public static List<IUpdateable> Components = new List<IUpdateable>();
 
-            public GameBase()
-            {
-                Instance = this;
-                MainLoop();
-            }
+        public GameBase()
+        {
+            Instance = this;
+            banchoClient = new BanchoClient();
+            MainLoop();
+        }
 
-            /// <summary>
-            /// MainLoop runs, starts the main loop and calls Initialize when ready.
-            /// </summary>
-            public abstract void MainLoop();
+        public void StartLoginProcess()
+        {
+            LoginForm loginForm = new LoginForm(banchoClient);
+            loginForm.ShowDialog();
+
+            if (banchoClient.IsConnected)
+            {
+                Initialize(); 
+            }
+            else
+            {
+                Console.WriteLine("Login failed. Exiting game.");
+                Environment.Exit(0); 
+            }
+        }
+
+        /// <summary>
+        /// MainLoop runs, starts the main loop and calls Initialize when ready.
+        /// </summary>
+        public abstract void MainLoop();
+
 
 
             public static event VoidDelegate OnScreenLayoutChanged;
@@ -210,8 +221,7 @@
             {
                 SetupScreen();
 
-            banchoClient = new BanchoClient();
-            InitializeBanchoStatusDisplay();
+
 
             InputManager.Initialize();
 			
@@ -286,32 +296,12 @@
 
                 Components.ForEach(c => c.Update());
 
-            UpdateBanchoStatus();
-
             spriteManager.Update();
             }
 		
 		    int lastFpsDraw = 0;
 
-        private void UpdateBanchoStatus()
-        {
-            // Add null check here
-            if (banchoClient != null)
-            {
-                if (!banchoClient.IsConnected)
-                {
-                    bool connected = banchoClient.Connect();
-                    connectionStatusText.Text = connected ? "Connected to Bancho" : "Disconnected from Bancho";
-                    connectionStatusText.Colour = connected ? Color4.Green : Color4.Red;
-                }
-            }
-            else
-            {
-                // Handle the case where banchoClient is null
-                Console.WriteLine("BanchoClient is not initialized");
-                // You might want to try initializing it here, or show an error message
-            }
-        }
+   
         private void UpdateFpsOverlay()
             {
                 weightedAverageFrameTime = weightedAverageFrameTime * 0.98 + ElapsedMilliseconds * 0.02;
@@ -322,11 +312,17 @@
 
                 fpsDisplay.Text = String.Format("{0:0}fps", Math.Round(fps), Clock.Time, Clock.AudioTime, Player.Autoplay ? "AP" : "");
             }
-
-            /// <summary>
-            /// Main draw cycle.
-            /// </summary>
-            public void Draw(FrameEventArgs e)
+        public static int Time
+        {
+            get
+            {
+                return (int)Clock.TimeAccurate;
+            }
+        }
+        /// <summary>
+        /// Main draw cycle.
+        /// </summary>
+        public void Draw(FrameEventArgs e)
             {
                 //todo: make update actually update on iphone and call from game architecture
                 Update(e);
