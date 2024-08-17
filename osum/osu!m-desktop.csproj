@@ -88,6 +88,10 @@
     <Compile Include="Graphics\TextureManager.cs" />
     <Compile Include="Graphics\UserInterface\BackButton.cs" />
     <Compile Include="Graphics\UserInterface\Dropdown.cs" />
+    <Compile Include="Graphics\UserInterface\LoginWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\UserInterface\OptionsButton.cs" />
     <Compile Include="Graphics\UserInterface\UserCard.cs" />
     <Compile Include="Graphics\UserInterface\CheckBox.cs" />
     <Compile Include="Helpers\Audio\AudioReader.cs" />
@@ -96,6 +100,7 @@
     <Compile Include="Helpers\Audio\SoundData.cs" />
     <Compile Include="Helpers\Audio\SoundFormat.cs" />
     <Compile Include="Helpers\Audio\WaveReader.cs" />
+    <Compile Include="Helpers\Bancho\BanchoClient.cs" />
     <Compile Include="Helpers\BoundingBox.cs" />
     <Compile Include="Helpers\ColourHelper.cs" />
     <Compile Include="Helpers\osu!common\bSerializable.cs" />
@@ -146,6 +151,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bass.dll">
@@ -721,5 +728,16 @@
     <None Include="Skins\Default\nekodex - welcome to osu!.osz2" />
     <None Include="Skins\Default\osu!font.ttf" />
     <None Include="Skins\Default\SliderB.blend" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="TaskScheduler">
+      <Guid>{E34CB9F1-C7F7-424C-BE29-027DCC09363A}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
 </Project>

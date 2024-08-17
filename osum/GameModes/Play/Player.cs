@@ -78,6 +78,14 @@ namespace osum.GameModes
             Console.WriteLine($"Applied Approach Rate Modifier: AR={approachRate}, PreEmpt={DifficultyManager.PreEmpt}, FadeIn={DifficultyManager.FadeIn}");
         }
 
+        private void ApplyHitWindowModifier()
+        {
+            float overallDifficulty = Beatmap.DifficultyOverall;
+            DifficultyManager.SetHitWindows(overallDifficulty);
+
+            Console.WriteLine($"Applied Overall Difficulty Modifier: OD={overallDifficulty}, HitWindow300={DifficultyManager.HitWindow300}, HitWindow100={DifficultyManager.HitWindow100}, HitWindow50={DifficultyManager.HitWindow50}");
+        }
+
         internal override void Initialize()
         {
             Console.WriteLine("Initializing Player mode.");
@@ -93,21 +101,19 @@ namespace osum.GameModes
 
             ApplyCircleSizeModifier();
             ApplyPreEmptModifier();
+            ApplyHitWindowModifier();
 
             healthBar = new HealthBar();
-
             scoreDisplay = new ScoreDisplay();
-
             comboCounter = new ComboCounter();
-
             currentScore = new Score();
-
             cursorSprite = new CursorSprite();
             cursorSprite.AddToSpriteManager(spriteManager);
 
             AudioEngine.Music.Load(Beatmap.GetFileBytes(Beatmap.AudioFilename));
             AudioEngine.Music.Play();
         }
+
 
 
 

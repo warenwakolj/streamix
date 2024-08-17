@@ -23,9 +23,30 @@ namespace osum.GameplayElements
 
         internal static int PreEmptSnakeStart { get { return 1000; } }
         internal static int PreEmptSnakeEnd { get { return 500; } }
-        internal static int HitWindow50 { get { return 150; } }
-        internal static int HitWindow100 { get { return 100; } }
-        internal static int HitWindow300 { get { return 50; } }
+        public static void SetHitWindows(float overallDifficulty)
+        {
+            int hitWindow300 = (int)(80 - 6 * overallDifficulty);
+            int hitWindow100 = (int)(140 - 8 * overallDifficulty);
+            int hitWindow50 = (int)(200 - 10 * overallDifficulty);
+
+            Console.WriteLine($"HitWindow300 set to: {hitWindow300}");
+            Console.WriteLine($"HitWindow100 set to: {hitWindow100}");
+            Console.WriteLine($"HitWindow50 set to: {hitWindow50}");
+
+            _hitWindow300 = hitWindow300;
+            _hitWindow100 = hitWindow100;
+            _hitWindow50 = hitWindow50;
+        }
+
+        private static int _hitWindow300 = 50;
+        public static int HitWindow300 { get { return _hitWindow300; } }
+
+        private static int _hitWindow100 = 100;
+        public static int HitWindow100 { get { return _hitWindow100; } }
+
+        private static int _hitWindow50 = 150;
+        public static int HitWindow50 { get { return _hitWindow50; } }
+
         internal static int FadeIn { get; private set; } = 400;
         internal static int FadeOut { get { return 300; } }
         internal static int SpinnerRotationRatio { get { return 5; } }
@@ -64,5 +85,4 @@ namespace osum.GameplayElements
             Console.WriteLine($"PreEmpt set to: {preEmpt}, FadeIn set to: {FadeIn}");
         }
     }
-
 }

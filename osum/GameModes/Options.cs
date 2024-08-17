@@ -95,9 +95,24 @@ namespace osum.GameModes
 
             oldScorebarCheckBox.AddToSpriteManager(spriteManager);
 
+            OptionsButton loginButton = new OptionsButton("Login", new Vector2(100, 300), new Vector2(200, 50), Color4.DarkSlateGray);
+            loginButton.OnClick += () =>
+            {
+                ShowLoginForm();
+            };
+            loginButton.SpriteCollection.ForEach(sprite => spriteManager.Add(sprite));
+
 
             AddDropdown();
+
         }
+
+        private void ShowLoginForm()
+        {
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.Run(new LoginForm());
+        }
+
 
         private void AddDropdown()
         {

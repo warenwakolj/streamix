@@ -60,8 +60,10 @@
         {
             public static GameBase Instance;
 
+        private BanchoClient banchoClient;
+        private pText connectionStatusText;
 
-            public static Random Random = new Random();
+        public static Random Random = new Random();
 
             /// <summary>
             /// Top-level sprite manager. Draws above everything else.
@@ -96,8 +98,15 @@
         
             internal static Vector2 GamefieldOffsetVector1;
 
+        private void InitializeBanchoStatusDisplay()
+        {
+            connectionStatusText = new pText("Connecting...", 10, new Vector2(5, WindowBaseSize.Height - 20), Vector2.Zero, 1, true, Color4.White, false);
+            connectionStatusText.Field = FieldTypes.StandardSnapTopLeft;
+            connectionStatusText.Origin = OriginTypes.BottomLeft;
+            spriteManager.Add(connectionStatusText);
+        }
 
-            internal static Vector2 GamefieldToStandard(Vector2 vec)
+        internal static Vector2 GamefieldToStandard(Vector2 vec)
             {
                 Vector2 newPosition = vec;
                 GamefieldToStandard(ref newPosition);
@@ -201,8 +210,10 @@
             {
                 SetupScreen();
 
+            banchoClient = new BanchoClient();
+            InitializeBanchoStatusDisplay();
 
-                InputManager.Initialize();
+            InputManager.Initialize();
 			
                 InitializeInput();
 			
@@ -275,12 +286,33 @@
 
                 Components.ForEach(c => c.Update());
 
-                spriteManager.Update();
+            UpdateBanchoStatus();
+
+            spriteManager.Update();
             }
 		
 		    int lastFpsDraw = 0;
-		
-            private void UpdateFpsOverlay()
+
+        private void UpdateBanchoStatus()
+        {
+            // Add null check here
+            if (banchoClient != null)
+            {
+                if (!banchoClient.IsConnected)
+                {
+                    bool connected = banchoClient.Connect();
+                    connectionStatusText.Text = connected ? "Connected to Bancho" : "Disconnected from Bancho";
+                    connectionStatusText.Colour = connected ? Color4.Green : Color4.Red;
+                }
+            }
+            else
+            {
+                // Handle the case where banchoClient is null
+                Console.WriteLine("BanchoClient is not initialized");
+                // You might want to try initializing it here, or show an error message
+            }
+        }
+        private void UpdateFpsOverlay()
             {
                 weightedAverageFrameTime = weightedAverageFrameTime * 0.98 + ElapsedMilliseconds * 0.02;
                 double fps = (1000/weightedAverageFrameTime);
