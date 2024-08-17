@@ -101,14 +101,10 @@
     <Compile Include="Helpers\Audio\SoundFormat.cs" />
     <Compile Include="Helpers\Audio\WaveReader.cs" />
     <Compile Include="Helpers\Bancho\BanchoClient.cs" />
-    <Compile Include="Helpers\Bancho\bUserPresence.cs" />
-    <Compile Include="Helpers\Bancho\bUserStats.cs" />
-    <Compile Include="Helpers\Bancho\bUserStatus.cs" />
     <Compile Include="Helpers\Bancho\Hashmaker.cs" />
     <Compile Include="Helpers\Bancho\OsuReader.cs" />
     <Compile Include="Helpers\Bancho\OsuWriter.cs" />
     <Compile Include="Helpers\Bancho\Request.cs" />
-    <Compile Include="Helpers\Bancho\User.cs" />
     <Compile Include="Helpers\BoundingBox.cs" />
     <Compile Include="Helpers\ColourHelper.cs" />
     <Compile Include="Helpers\osu!common\bSerializable.cs" />

@@ -11,7 +11,7 @@ internal class UserCard : pSpriteCollection
     public delegate void StateChangedHandler(bool isSelected);
     public event StateChangedHandler OnStateChanged;
 
-    internal UserCard(Vector2 position, string textContent)
+    internal UserCard(Vector2 position)
     {
         backingPlate = pSprite.FullscreenWhitePixel;
         backingPlate.Alpha = 1;
@@ -26,12 +26,16 @@ internal class UserCard : pSpriteCollection
 
         };
 
-        text = new pText(textContent, 9, position + new Vector2(50, -1), new Vector2(400, 40), 1, true, Color4.White, false);
+        text = new pText("Guest", 9, position + new Vector2(50, -1), new Vector2(400, 40), 1, true, Color4.White, false);
         SpriteCollection.Add(text);
         undertext = new pText("Please click here to login", 6.5f, position + new Vector2(50, 13), new Vector2(400, 40), 1, true, Color4.White, false);
         SpriteCollection.Add(undertext);
     }
 
+    public void UpdateUsername(string username)
+    {
+        text.Text = (username); 
+    }
     internal void AddToSpriteManager(SpriteManager spriteManager)
     {
         spriteManager.Add(backingPlate);

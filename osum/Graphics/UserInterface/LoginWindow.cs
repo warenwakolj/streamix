@@ -17,12 +17,14 @@ namespace osum.GameModes
         private Button btnLogin;
         private Button btnCancel;
 
+
         public LoginForm()
         {
             this.Text = "Login";
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
+
             this.MinimizeBox = false;
             this.Size = new System.Drawing.Size(300, 200);
 
@@ -44,6 +46,7 @@ namespace osum.GameModes
             this.Controls.Add(sPassword);
             this.Controls.Add(btnLogin);
             this.Controls.Add(btnCancel);
+
         }
 
         void BtnCancel_Click(object sender, EventArgs e)

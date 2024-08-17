@@ -48,7 +48,7 @@ namespace osum
             spriteManager.Add(menuNp);
 
 
-            UserCard UserCard = new UserCard(new Vector2(4, 4), "Guest");
+            UserCard UserCard = new UserCard(new Vector2(4, 4));
             UserCard.AddToSpriteManager(spriteManager);
 
             MenuCopyright MenuCopyright = new MenuCopyright();
