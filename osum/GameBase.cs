@@ -61,6 +61,7 @@ using osum.Online;
         {
             public static GameBase Instance;
         public BanchoClient banchoClient;
+        internal static pText statusDisplay;
 
 
         public static Random Random = new Random();
@@ -148,16 +149,8 @@ using osum.Online;
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
 
-            // Only initialize if connected and authenticated
-            if (banchoClient.IsConnected)
-            {
-                Initialize();
-            }
-            else
-            {
-                Console.WriteLine("Login failed. Exiting game.");
-                Environment.Exit(0);
-            }
+            Initialize();
+
         }
 
         /// <summary>
@@ -225,7 +218,6 @@ using osum.Online;
             SetupScreen();
 
             InputManager.Initialize();
-
             InitializeInput();
 
             if (InputManager.RegisteredSources.Count == 0)
@@ -246,11 +238,21 @@ using osum.Online;
 
             Director.ChangeMode(OsuMode.MainMenu, new FadeTransition(200, 500));
 
-            fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
-            fpsDisplay.Field = FieldTypes.StandardSnapBottomRight;
-            fpsDisplay.Origin = OriginTypes.BottomRight;
+            fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false)
+            {
+                Field = FieldTypes.StandardSnapBottomRight,
+                Origin = OriginTypes.BottomRight
+            };
             spriteManager.Add(fpsDisplay);
+
+            statusDisplay = new pText("Status: Initializing...", 10, new Vector2(5, WindowBaseSize.Height - 20), Vector2.Zero, 1, true, Color4.White, false)
+            {
+                Field = FieldTypes.StandardSnapBottomLeft,
+                Origin = OriginTypes.BottomLeft
+            };
+            spriteManager.Add(statusDisplay);
         }
+
 
         /// <summary>
         /// Initializes the sound effects engine.
@@ -293,9 +295,38 @@ using osum.Online;
 
             Director.Update();
 
+            UpdateStatusDisplay();
+
             Components.ForEach(c => c.Update());
 
             spriteManager.Update();
+        }
+
+        private void UpdateStatusDisplay()
+        {
+            if (banchoClient != null)
+            {
+                string statusText = "Status: ";
+
+                if (!banchoClient.IsConnected)
+                {
+                    statusText += "Disconnected";
+                }
+                else if (!banchoClient.IsAuthenticated)
+                {
+                    statusText += "Connected, but not logged in";
+                }
+                else
+                {
+                    statusText += $"Connected and logged in as User ID {banchoClient.userId}";
+                }
+
+                statusDisplay.Text = statusText;
+            }
+            else
+            {
+                statusDisplay.Text = "Status: No Bancho client";
+            }
         }
 
 

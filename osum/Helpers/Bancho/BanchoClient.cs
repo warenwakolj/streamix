@@ -34,6 +34,9 @@ namespace osum.Online
         }
 
         public bool IsConnected => Connected;
+        public bool IsAuthenticated => Authenticated;
+        public int userId { get; private set; }
+
 
         public bool Connect()
         {
@@ -42,6 +45,10 @@ namespace osum.Online
                 Disconnect(true);
                 client = new TcpClient("149.28.160.232", 13381);
                 client.NoDelay = true;
+
+                var socket = client.Client;
+                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+
                 stream = client.GetStream();
                 writer = new StreamWriter(stream);
 
@@ -51,7 +58,7 @@ namespace osum.Online
                 Authenticated = true;
 
                 writer.AutoFlush = true;
-
+                   Thread.Sleep(500);
                 return true;
             }
             catch (Exception)
@@ -61,24 +68,41 @@ namespace osum.Online
             }
         }
 
+
+
         public int Login(string username, string hashedPassword)
         {
             if (!Connected)
                 return -5;
 
-            writer.WriteLine(username);
-            writer.WriteLine(hashedPassword);
-            writer.WriteLine("b420|" + TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours);
-
-            int userId = ProcessServerResponse();
-
-            if (userId > 0)
+            for (int attempt = 0; attempt < 3; attempt++)
             {
-                Authenticated = true;
+                writer.WriteLine(username);
+                writer.WriteLine(hashedPassword);
+                writer.WriteLine("b420|" + TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours);
+
+                int receivedUserId = ProcessServerResponse();
+
+                if (receivedUserId > 0)
+                {
+                    Authenticated = true;
+                    userId = receivedUserId; 
+                    return userId; 
+                }
+                else if (receivedUserId == -5 && attempt < 2)
+                {
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    return receivedUserId; 
+                }
             }
 
-            return userId;
+            return -5; 
         }
+
+
 
 
 
@@ -86,21 +110,55 @@ namespace osum.Online
         {
             try
             {
-                byte[] buffer = new byte[4];
-                int bytesRead = stream.Read(buffer, 0, 4);
-                if (bytesRead != 4)
+                byte[] headerBuffer = new byte[7];
+                int bytesRead = stream.Read(headerBuffer, 0, headerBuffer.Length);
+                if (bytesRead != 7)
                 {
-                    return -5; 
+                    return -5;
                 }
 
-                int result = BitConverter.ToInt32(buffer, 0);
-                return result;
+                int packetType = BitConverter.ToUInt16(headerBuffer, 0);
+                bool isCompressed = BitConverter.ToBoolean(headerBuffer, 2);
+                uint contentLength = BitConverter.ToUInt32(headerBuffer, 3);
+
+                if (contentLength > 0)
+                {
+                    byte[] contentBuffer = new byte[contentLength];
+                    bytesRead = stream.Read(contentBuffer, 0, (int)contentLength);
+                    if (bytesRead != contentLength)
+                    {
+                        return -5;
+                    }
+
+                    if (packetType == 5)
+                    {
+                        int result = BitConverter.ToInt32(contentBuffer, 0);
+                        return result;
+                    }
+                }
+
+                return -5;
             }
             catch (Exception)
             {
-                return -5; 
+                Thread.Sleep(200);
+                try
+                {
+                    byte[] retryBuffer = new byte[4];
+                    int retryBytesRead = stream.Read(retryBuffer, 0, 4);
+                    if (retryBytesRead == 4)
+                    {
+                        int retryResult = BitConverter.ToInt32(retryBuffer, 0);
+                        return retryResult;
+                    }
+                }
+                catch { }
+
+                return -5;
             }
         }
+
+
 
         public class LoginResultEventArgs : EventArgs
         {
