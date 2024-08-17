@@ -82,7 +82,7 @@ namespace osum.Online
 
 
 
-        private int ProcessServerResponse()
+        public int ProcessServerResponse()
         {
             try
             {

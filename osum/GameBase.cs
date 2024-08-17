@@ -60,7 +60,7 @@ using osum.Online;
         public abstract class GameBase
         {
             public static GameBase Instance;
-        private BanchoClient banchoClient;
+        public BanchoClient banchoClient;
 
 
         public static Random Random = new Random();
@@ -139,21 +139,24 @@ using osum.Online;
             Instance = this;
             banchoClient = new BanchoClient();
             MainLoop();
+            StartBanchoProcess();
         }
 
-        public void StartLoginProcess()
+
+        public void StartBanchoProcess()
         {
-            LoginForm loginForm = new LoginForm(banchoClient);
+            LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
 
+            // Only initialize if connected and authenticated
             if (banchoClient.IsConnected)
             {
-                Initialize(); 
+                Initialize();
             }
             else
             {
                 Console.WriteLine("Login failed. Exiting game.");
-                Environment.Exit(0); 
+                Environment.Exit(0);
             }
         }
 
@@ -214,48 +217,45 @@ using osum.Online;
                     OnScreenLayoutChanged();
             }
 
-            /// <summary>
-            /// This is where the magic happens.
-            /// </summary>
-            public virtual void Initialize()
-            {
-                SetupScreen();
-
-
+        /// <summary>
+        /// This is where the magic happens.
+        /// </summary>
+        public virtual void Initialize()
+        {
+            SetupScreen();
 
             InputManager.Initialize();
-			
-                InitializeInput();
-			
-                if (InputManager.RegisteredSources.Count == 0)
-                    throw new Exception("No input sources registered");
 
-                IBackgroundAudioPlayer music = InitializeBackgroundAudio();
-                if (music == null)
-                    throw new Exception("No background audio manager registered");
-                Clock.AudioTimeSource = music;
-                Components.Add(music);
+            InitializeInput();
 
-                ISoundEffectPlayer effect = InitializeSoundEffects();
-                if (effect == null)
-                    throw new Exception("No sound effect player registered");
-                Components.Add(effect);
+            if (InputManager.RegisteredSources.Count == 0)
+                throw new Exception("No input sources registered");
 
-                AudioEngine.Initialize(effect, music);
+            IBackgroundAudioPlayer music = InitializeBackgroundAudio();
+            if (music == null)
+                throw new Exception("No background audio manager registered");
+            Clock.AudioTimeSource = music;
+            Components.Add(music);
 
-                //Load the main menu initially.
-                Director.ChangeMode(OsuMode.MainMenu, new FadeTransition(200,500));
+            ISoundEffectPlayer effect = InitializeSoundEffects();
+            if (effect == null)
+                throw new Exception("No sound effect player registered");
+            Components.Add(effect);
 
-                fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
-                fpsDisplay.Field = FieldTypes.StandardSnapBottomRight;
-                fpsDisplay.Origin = OriginTypes.BottomRight;
-                spriteManager.Add(fpsDisplay);
-            }
+            AudioEngine.Initialize(effect, music);
 
-            /// <summary>
-            /// Initializes the sound effects engine.
-            /// </summary>
-            protected virtual ISoundEffectPlayer InitializeSoundEffects()
+            Director.ChangeMode(OsuMode.MainMenu, new FadeTransition(200, 500));
+
+            fpsDisplay = new pText("", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
+            fpsDisplay.Field = FieldTypes.StandardSnapBottomRight;
+            fpsDisplay.Origin = OriginTypes.BottomRight;
+            spriteManager.Add(fpsDisplay);
+        }
+
+        /// <summary>
+        /// Initializes the sound effects engine.
+        /// </summary>
+        protected virtual ISoundEffectPlayer InitializeSoundEffects()
             {
                 //currently openAL implementation is used across the board.
                 return new SoundEffectPlayer();
@@ -274,32 +274,32 @@ using osum.Online;
             internal static pText fpsDisplay;
             double weightedAverageFrameTime;
 
-            /// <summary>
-            /// Main update cycle.
-            /// </summary>
-            public void Update(FrameEventArgs e)
-            {
-                GL.Disable(EnableCap.DepthTest);
+        /// <summary>
+        /// Main update cycle.
+        /// </summary>
+        public void Update(FrameEventArgs e)
+        {
+            GL.Disable(EnableCap.DepthTest);
 
-                double lastTime = Clock.TimeAccurate;
+            double lastTime = Clock.TimeAccurate;
 
-                Clock.Update(e.Time);
+            Clock.Update(e.Time);
 
-                //todo: make more accurate
-                ElapsedMilliseconds = Clock.TimeAccurate - lastTime;
+            ElapsedMilliseconds = Clock.TimeAccurate - lastTime;
 
-                InputManager.Update();
+            InputManager.Update();
 
-                UpdateFpsOverlay();
-            
-                Director.Update();
+            UpdateFpsOverlay();
 
-                Components.ForEach(c => c.Update());
+            Director.Update();
+
+            Components.ForEach(c => c.Update());
 
             spriteManager.Update();
-            }
-		
-		    int lastFpsDraw = 0;
+        }
+
+
+        int lastFpsDraw = 0;
 
    
         private void UpdateFpsOverlay()

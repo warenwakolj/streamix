@@ -111,7 +111,7 @@ namespace osum.GameModes
         private void ShowLoginForm()
         {
             BanchoClient banchoClient = new BanchoClient();
-            LoginForm loginForm = new LoginForm(banchoClient);
+            LoginForm loginForm = new LoginForm();
             System.Windows.Forms.Application.Run(loginForm);
         }
 

@@ -6,22 +6,20 @@ using System.Windows.Forms;
 
 
 
-   
+
 
 namespace osum.GameModes
+{
+    public class LoginForm : Form
     {
-        public class LoginForm : Form
-        {
-            private BanchoClient banchoClient;
         public TextBox sUsername;
         public TextBox sPassword;
         private Button btnLogin;
         private Button btnCancel;
-        public LoginForm(BanchoClient client)
-            {
-                banchoClient = client;
 
-                this.Text = "Login";
+        public LoginForm()
+        {
+            this.Text = "Login";
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
@@ -60,6 +58,8 @@ namespace osum.GameModes
 
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
+                var banchoClient = GameBase.Instance.banchoClient;  // Accessing BanchoClient from GameBase
+
                 if (!banchoClient.IsConnected)
                 {
                     if (!banchoClient.Connect())
