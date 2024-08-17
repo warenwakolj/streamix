@@ -32,10 +32,7 @@ internal class UserCard : pSpriteCollection
         SpriteCollection.Add(undertext);
     }
 
-    public void UpdateUsername(string username)
-    {
-        text.Text = (username); 
-    }
+
     internal void AddToSpriteManager(SpriteManager spriteManager)
     {
         spriteManager.Add(backingPlate);

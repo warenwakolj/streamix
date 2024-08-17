@@ -247,8 +247,8 @@ using osum.Online;
 
             statusDisplay = new pText("Status: Initializing...", 10, new Vector2(5, WindowBaseSize.Height - 20), Vector2.Zero, 1, true, Color4.White, false)
             {
-                Field = FieldTypes.StandardSnapBottomLeft,
-                Origin = OriginTypes.BottomLeft
+             Field = FieldTypes.StandardSnapTopLeft,
+             Origin = OriginTypes.BottomLeft,
             };
             spriteManager.Add(statusDisplay);
         }

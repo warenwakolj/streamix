@@ -113,10 +113,13 @@ namespace osum.GameplayElements.Scoring
             s_kiIcon.Transform(new Transformation(TransformationType.Scale, 1.6f, 1, Clock.Time, Clock.Time + 500));
         }
 
+        private double TimeSinceInitialIncreaseEnded = 0f; // Timer variable
+
         public override void Update()
         {
             base.Update();
 
+            // Update the health bar fill and icon based on current HP
             if (DisplayHp < HP_BAR_MAXIMUM * 0.2)
                 s_kiIcon.Texture = t_kiDanger2;
             else if (DisplayHp < HP_BAR_MAXIMUM * 0.5)
@@ -124,7 +127,7 @@ namespace osum.GameplayElements.Scoring
             else if (s_kiIcon.Texture != t_kiNormal)
                 s_kiIcon.Texture = t_kiNormal;
 
-            // HP Bar
+            // Smoothly update the displayed HP
             if (DisplayHp < CurrentHp)
             {
                 if (InitialIncrease)
@@ -141,6 +144,7 @@ namespace osum.GameplayElements.Scoring
                     if (DisplayHp >= HP_BAR_MAXIMUM)
                     {
                         InitialIncrease = false;
+                        TimeSinceInitialIncreaseEnded = 0f; // Start the timer
                     }
                 }
                 else
@@ -150,21 +154,37 @@ namespace osum.GameplayElements.Scoring
             }
             else if (DisplayHp > CurrentHp)
             {
-                InitialIncrease = false;
                 DisplayHp = Math.Max(0, DisplayHp - Math.Abs(DisplayHp - CurrentHp) / 6 * GameBase.ElapsedMilliseconds * 0.1);
             }
 
             s_barFill.DrawWidth = (int)Math.Min(s_barFill.Width, Math.Max(0, (s_barFill.Width * (DisplayHp / HP_BAR_MAXIMUM))));
 
-            // Sync Ki icon position with the end of the scorebar fill.
+            // Sync Ki icon position with the end of the scorebar fill
             s_kiIcon.Position = new Vector2(CurrentXPosition, s_kiIcon.Position.Y);
 
-            // Check if HP is zero and trigger fail screen only if InitialIncrease is false
+            // Update the timer if InitialIncrease is over
+            if (!InitialIncrease)
+            {
+                TimeSinceInitialIncreaseEnded += GameBase.ElapsedMilliseconds;
+            }
+
+            // Check if HP is zero and 2 seconds have passed since InitialIncrease ended
+            if (CurrentHp == 0 && TimeSinceInitialIncreaseEnded >= 2000f)
+            {
+                Director.ChangeMode(OsuMode.Failed, new FadeTransition());
+            }
+        }
+
+
+        private void CheckForFailure()
+        {
             if (CurrentHp == 0 && !InitialIncrease)
             {
                 Director.ChangeMode(OsuMode.Failed, new FadeTransition());
             }
         }
+
+
 
 
 

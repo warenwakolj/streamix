@@ -9,12 +9,11 @@ using System.Collections;
 using System.Collections.Generic;
 using osum.Audio;
 using System.Drawing;
+using osum.GameModes.MainMenu;
 namespace osum.GameModes
 {
     public class Failed : GameMode
     {
-        pSprite retryButton;
-        pSprite backButton;
         private CursorSprite cursorSprite;
         internal static pText OptionsText;
 
@@ -25,21 +24,13 @@ namespace osum.GameModes
 
         internal override void Initialize()
         {
-            retryButton = new pSprite(TextureManager.Load("pause-retry"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(0, 10), 1.0f, true, Color4.White);
+            PauseButton PauseRetry = new PauseButton(OsuMode.Play, @"pause-retry");
+            spriteManager.Add(PauseRetry);
+            PauseRetry.SetPosition(new Vector2(180, 200));
 
-            retryButton.OnClick += delegate {
-                retryButton.UnbindAllEvents();
-                Director.ChangeMode(OsuMode.Play);
-            };
-            spriteManager.Add(retryButton);
-
-            backButton = new pSprite(TextureManager.Load("pause-back"), FieldTypes.StandardSnapCentre, OriginTypes.Centre, ClockTypes.Mode, new Vector2(0, 80), 1.0f, true, Color4.White);
-
-            backButton.OnClick += delegate {
-                backButton.UnbindAllEvents();
-                Director.ChangeMode(OsuMode.SongSelect);
-            };
-            spriteManager.Add(backButton);
+            PauseButton PauseBack = new PauseButton(OsuMode.SongSelect, @"pause-back");
+            spriteManager.Add(PauseBack);
+            PauseBack.SetPosition(new Vector2(180, 270));
 
             OptionsText = new pText("Failed", 10, Vector2.Zero, new Vector2(0, 0), 1, true, Color4.White, false);
             spriteManager.Add(OptionsText);

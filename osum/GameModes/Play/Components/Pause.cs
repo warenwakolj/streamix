@@ -5,6 +5,7 @@ using osum.Graphics.Skins;
 using osum.Graphics.Sprites;
 using osum.Helpers;
 using osum;
+using osum.GameModes.MainMenu;
 
 public class PauseMenu : GameMode
 {
@@ -20,32 +21,22 @@ public class PauseMenu : GameMode
 
     internal override void Initialize()
     {
-        background = new pSprite(TextureManager.Load("menu-background"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
+        background = new pSprite(TextureManager.Load("menu-background"), FieldTypes.Standard, OriginTypes.TopLeft,
                                  ClockTypes.Game, Vector2.Zero, 1, true, new Color4(0, 0, 0, 0.8f));
         spriteManager.Add(background);
 
-        resumeButton = new pSprite(TextureManager.Load("pause-continue"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                                   ClockTypes.Game, new Vector2(0, -50), 1, true, Color4.White);
-        resumeButton.Scale = new Vector2(0.5f, 0.5f);
-        resumeButton.OnClick += delegate
-        {
-            var player = Director.CurrentMode as Player;
-            if (player != null)
-            {
-                player.Resume();
-            }
-            Director.ChangeMode(OsuMode.Play);
-        };
-        spriteManager.Add(resumeButton);
+        PauseButton PauseContinue = new PauseButton(OsuMode.Play, @"pause-continue");
+        spriteManager.Add(PauseContinue);
+        PauseContinue.SetPosition(new Vector2(180, 130));
 
-        OptionsButton = new pSprite(TextureManager.Load("pause-back"), FieldTypes.StandardSnapCentre, OriginTypes.Centre,
-                                       ClockTypes.Game, new Vector2(0, 50), 1, true, Color4.White);
-        OptionsButton.Scale = new Vector2(0.5f, 0.5f);
-        OptionsButton.OnClick += delegate
-        {
-            Director.ChangeMode(OsuMode.SongSelect);
-        };
-        spriteManager.Add(OptionsButton);
+        PauseButton PauseRetry = new PauseButton(OsuMode.Play, @"pause-retry");
+        spriteManager.Add(PauseRetry);
+        PauseRetry.SetPosition(new Vector2(180, 200));
+
+        PauseButton PauseBack = new PauseButton(OsuMode.SongSelect, @"pause-back");
+        spriteManager.Add(PauseBack);
+        PauseBack.SetPosition(new Vector2(180, 270));
+
         cursorSprite = new CursorSprite();
         cursorSprite.AddToSpriteManager(spriteManager);
     }
@@ -63,8 +54,7 @@ public class PauseMenu : GameMode
 
     public override void Dispose()
     {
-        resumeButton.UnbindAllEvents();
-        OptionsButton.UnbindAllEvents();
+
 
         base.Dispose();
     }
