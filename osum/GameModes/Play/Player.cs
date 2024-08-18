@@ -73,10 +73,15 @@ namespace osum.GameModes
         private void ApplyPreEmptModifier()
         {
             float approachRate = Beatmap.DifficultyApproachRate;
+
+            //dk if this actually works for actual ar0 diffs
+
             DifficultyManager.SetPreEmptAndFadeIn(approachRate);
 
             Console.WriteLine($"Applied Approach Rate Modifier: AR={approachRate}, PreEmpt={DifficultyManager.PreEmpt}, FadeIn={DifficultyManager.FadeIn}");
         }
+
+
 
         private void ApplyHitWindowModifier()
         {

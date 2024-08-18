@@ -77,6 +77,9 @@ namespace osum.GameModes
                 if (loginResult > 0)
                 {
                     MessageBox.Show($"Logged in successfully! User ID: {loginResult}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    UserCard.SetUsername(username);
+
                     this.Close();
                 }
                 else

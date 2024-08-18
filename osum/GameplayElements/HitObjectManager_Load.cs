@@ -205,7 +205,6 @@ namespace osum.GameplayElements
                                         break;
                                     case "OverallDifficulty":
                                         beatmap.DifficultyOverall = Math.Min((byte)10f, Math.Max((byte)0f, byte.Parse(val)));
-                                        //if (!hasApproachRate) DifficultyApproachRate = DifficultyOverall;
                                         break;
                                     case "ApproachRate":
                                         beatmap.DifficultyApproachRate = Math.Min((byte)10f, Math.Max((byte)0f, byte.Parse(val)));
@@ -218,10 +217,11 @@ namespace osum.GameplayElements
                                         beatmap.DifficultySliderTickRate =
                                             Math.Max(0.5, Math.Min(8, Double.Parse(val, GameBase.nfi)));
                                         break;
-                                    /*case "ApproachRate":
-                                        beatmap.DifficultyApproachRate = Math.Min((byte)10, Math.Max((byte)0, byte.Parse(val)));
-                                        hasApproachRate = true;
-                                        break;*/
+                                }
+
+                                if (beatmap.DifficultyApproachRate == 0 && beatmap.DifficultyOverall != 0)
+                                {   
+                                    beatmap.DifficultyApproachRate = beatmap.DifficultyOverall;
                                 }
                                 break;
                             case FileSection.HitObjects:
